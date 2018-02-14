@@ -1,12 +1,28 @@
-# Team-Zero
-CS383 Project
+#Team-Zero: Sad Pancake
+
+https://www.github.com/alexmcnurlin/Team-Zero.git
+
+Sad Pancake is a 2d side scrolling game built in Unity. The game features a less than happy pancake as he tries to escape anything and everything trying to turn him into a delicious breakfast.
+
+## Download
+		In a terminal with git installed
+		- `git clone https://www.github.com/alexmcnurlin/Team-Zero.git`
+			- This will use https, so you will have to re-enter you git password whenever you push
+		- `git clone git@github.com:alexmcnurlin/Team-Zero.git`
+			- This uses SSH, you won't need a password, but you'll need to [add your ssh key to GitHub](https://help.github.com/articles/connecting-to-github-with-ssh/)
+
+## Directory structure
+		1. `doc/`: Contains all documentation related to the project
+		1. `inc/`: Contains stuff, I guess
+		1. `src/`: All source code for the project
+		1. `tst/`: Contains all tests for the project
 
 
 ## Team Members
-		1. Josue Espinosa Team Lead 2 ,(208) 841-8343, espi9890, github: josueespinosa
-		2. Alex McNurlin Team Lead 1, (208) 721-3815, mcnu5088, github: alexmcnurlin
-		3. Tori Overholtzer: Graphic Design , General Programmer, (208) 660 5107 , over3363
-		4. Simon Barnes: Documentation, General Programming, (208) 919-9581, barn2394, github: simonisadude@yahoo.com
-		5. Jorge Olivas: General Programming, I'll figure out something more specific later, (208) 313-0143, oliv5694, github: japowins
-		6. Zane Durkin: General Programming, (801) 755-0237, durk7832, durkinza
-		7. Hayden Lepla: General Programming/Debugging, (208) 608-8631, github: hlepla, lepl1529@vandals.uidaho.edu
+		1. Alex McNurlin Team Lead 1
+		2. Josue Espinosa Team Lead 2
+		3. Tori Overholtzer
+		4. Simon Barnes
+		5. Jorge Olivas
+		6. Zane Durkin
+		7. Hayden Lepla
