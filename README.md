@@ -24,6 +24,7 @@ In a terminal with git installed run one of the following
     - `Characters`
     - `Prefabs`
 * `tst/`: Contains all tests for the project
+
 We will not have a `inc/` directory, since C#/Unity does not have header files
 
 
