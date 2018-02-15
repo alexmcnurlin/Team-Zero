@@ -29,12 +29,12 @@ We will not have a `inc/` directory, since C#/Unity does not have header files
 
 
 ## Team Members
-| Member           | Role               |
-|------------------|--------------------|
-| Alex McNurlin    | Team Lead 1        |
-| Josue Espinosa   | Team Lead 2        |
-| Tori Overholtzer | Not yet determined |
-| Simon Barnes     | Not yet determined |
-| Jorge Olivas     | Not yet determined |
-| Zane Durkin      | Not yet determined |
-| Hayden Lepla     | Not yet determined |
+| Member           | Role                      |
+|------------------|---------------------------|
+| Alex McNurlin    | Team Lead 1               |
+| Josue Espinosa   | Team Lead 2               |
+| Zane Durkin      | Quality Assurance Manager |
+| Tori Overholtzer | Not yet determined        |
+| Simon Barnes     | Not yet determined        |
+| Hayden Lepla     | Not yet determined        |
+| Jorge Olivas     | Systems Analyst           |
