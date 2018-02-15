@@ -34,7 +34,7 @@ We will not have a `inc/` directory, since C#/Unity does not have header files
 | Alex McNurlin    | Team Lead 1               |
 | Josue Espinosa   | Team Lead 2               |
 | Zane Durkin      | Quality Assurance Manager |
+| Hayden Lepla     | Project Manager           |
 | Tori Overholtzer | Not yet determined        |
 | Simon Barnes     | Not yet determined        |
-| Hayden Lepla     | Not yet determined        |
 | Jorge Olivas     | Systems Analyst           |
