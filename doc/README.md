@@ -4,7 +4,7 @@
 Here lies documentation for this project
 
 ## Directory Structure
-* `champion_documents`: Contains the champion document for each team member
+* `champion_documents/`: Contains the champion document for each team member
 
 ## Coding Style and Conventions
 
