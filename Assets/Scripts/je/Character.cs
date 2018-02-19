@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour {
 	
-	public abstract void move ();
+	public abstract void Move ();
 
-	protected abstract void onCollision ();
+	protected abstract void OnCollision ();
 
 	// private list inventory;
 
