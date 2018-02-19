@@ -5,12 +5,23 @@ Here lies documentation for this project
 
 ## Directory Structure
 * `champion_documents/`: Contains the champion document for each team member
+* `class_and_sequence_diagrams/`: Contains the Class Diagrams, Sequence Diagrams, and Gantt Timelines for week 1
 
 ## Coding Style and Conventions
 
 This project uses the official C# coding conventions with Allman Style indentation.
 * [Official C# coding conventions](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions)
 * [Allman Style](https://en.wikipedia.org/wiki/Indentation_style#Allman_style)
+## Team Members
+| Member           | Role                      |
+|------------------|---------------------------|
+| Alex McNurlin    | Team Lead 1               |
+| Josue Espinosa   | Team Lead 2               |
+| Zane Durkin      | Quality Assurance Manager |
+| Hayden Lepla     | Project Manager           |
+| Tori Overholtzer | Software Architect        |
+| Simon Barnes     | Documentation Specialist  |
+| Jorge Olivas     | Systems Analyst           |
 
 ## Git Branch conventions
 The purpose of this section is to provide a clear and consistent outline for management of branches in git. The methods presented here are intended to mimic the development model required in many professional settings.
