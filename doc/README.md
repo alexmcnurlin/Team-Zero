@@ -5,7 +5,7 @@ Here lies documentation for this project
 
 ## Directory Structure
 * `champion_documents/`: Contains the champion document for each team member
-* `class_and_sequence_diagrams`: Contains the Class Diagrams, Sequence Diagrams, and Gantt Timelines for week 1
+* `class_and_sequence_diagrams/`: Contains the Class Diagrams, Sequence Diagrams, and Gantt Timelines for week 1
 
 ## Coding Style and Conventions
 
