@@ -13,7 +13,6 @@ public class NonCharacterCollisionController:MonoBehaviour {
         Damaging,
         Killing,
         EndOfLevel
-
     }
 
     public enum ItemTypes 
@@ -44,7 +43,7 @@ public class NonCharacterCollisionController:MonoBehaviour {
 
         object[] tempStorage = new object[4];
 
-        if(tileType != TileTypes.None) {
+        if(tileType != TileTypes.None && (other.gameObject.tag == "MainPlayer" || other.gameObject.tag == "Enemy")) {
 
             switch(tileType) {
                 case TileTypes.DefaultSpeed:
@@ -78,6 +77,13 @@ public class NonCharacterCollisionController:MonoBehaviour {
                 default:
                     break;
             }
+
         }
+
     }
 }
+/*
+CollideWithObject(string type, float percentage) //playerSpeed * percentage
+CollideWithObject(string type, int damageAmt) //playerHealth - damageAmt
+CollideWithObject(string type)//Args: "Killing"
+*/
