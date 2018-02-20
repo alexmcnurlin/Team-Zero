@@ -1,14 +1,13 @@
-using System.Media;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour {
 	
 	public enum SoundType 
 	{
-		ENEMY_COLLISION = "lol.mp3",
-		PLAYER_JUMP = "jump.mp3"
-						
+		ENEMY_COLLISION,
+		PLAYER_JUMP,
 	}
 	
 	private bool musicPlaying = false;
@@ -29,12 +28,12 @@ public class AudioManager : MonoBehaviour {
 
 	public int PlayMusic(SoundType music)
 	{
-	
+		return 0;
 	}
 	
 	public int PlayFx(SoundType fx)
 	{
-		
+		return 0;
 	}
 	
 }

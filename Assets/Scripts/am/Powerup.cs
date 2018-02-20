@@ -1,23 +1,25 @@
-using System.Collections;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 
 public class Powerup : MonoBehaviour 
 {
     public int id;
-    public Enum modifiers modifier;
-    private DateTime time;
+	public enum Modifier {
+		INVINCIBLE,
+	}
+	private DateTime time;
 
-    public void ActivatePowerup 
+	public void ActivatePowerup ()
     {
         // No implmentation yet
     }
 
-    public DateTime TimeLeft
+	public DateTime TimeLeft ()
     {
         // No implementation yet
+		return DateTime.Now;
     }
 
     void Start()
