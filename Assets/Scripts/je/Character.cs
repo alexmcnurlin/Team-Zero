@@ -22,7 +22,7 @@ public abstract class Character : MonoBehaviour {
 	private int money;
 	private int health;
 	private int velocity;
-	private int speed;
+	protected int speed;
 	private Direction direction;
 
 	public void Move () 
