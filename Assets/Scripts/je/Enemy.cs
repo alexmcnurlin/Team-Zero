@@ -35,7 +35,7 @@ public class Enemy : Character {
 
 	private bool IsEnemyVisibleOnScreen () 
 	{
-
+		return true;
 	}
 
 	public void Attack () 
