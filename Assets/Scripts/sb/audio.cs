@@ -10,22 +10,22 @@ public class AudioManager : MonoBehaviour {
 	private bool isInit = false;
 	
 	
-	void Start ()
+	public void Start ()
 	{
 		
 	}
 
-	void Update()
+	public void Update()
 	{
 		
 	}
 
-	int PlayMusic(string music)
+	public int PlayMusic(string music)
 	{
-		
+	
 	}
 	
-	int PlayFx(string fx)
+	public int PlayFx(string fx)
 	{
 		
 	}
