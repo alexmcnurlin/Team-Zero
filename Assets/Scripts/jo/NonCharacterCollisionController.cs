@@ -24,6 +24,7 @@ public class NonCharacterCollisionController:MonoBehaviour {
 
     public TileTypes tileType;
     public ItemTypes itemType;
+    public int damageGiving = 0;
 
 
     // Use this for initialization
@@ -82,8 +83,3 @@ public class NonCharacterCollisionController:MonoBehaviour {
 
     }
 }
-/*
-CollideWithObject(string type, float percentage) //playerSpeed * percentage
-CollideWithObject(string type, int damageAmt) //playerHealth - damageAmt
-CollideWithObject(string type)//Args: "Killing"
-*/
