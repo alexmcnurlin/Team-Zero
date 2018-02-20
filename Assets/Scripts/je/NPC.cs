@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FriendlyNPC : MonoBehaviour {
+public class NPC : MonoBehaviour {
 
 	private string[] dialogue;
 	private float velocity = 1;
@@ -35,7 +35,7 @@ public class FriendlyNPC : MonoBehaviour {
 	public void CollideWithObject(object[] temp) {
 		string type = (string) temp[0];
 		float speed = (float) temp[1];
-		velocity *= speed * 3;
+		velocity *= speed * 2;
 	}
 
 	void AssignQuest (/*Quest quest*/) 
