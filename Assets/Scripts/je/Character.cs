@@ -21,8 +21,8 @@ public abstract class Character : MonoBehaviour {
 
 	private int money;
 	private int health;
-	private int velocity;
-	protected int speed;
+	protected float velocity;
+	protected float speed;
 	private Direction direction;
 
 	public void Move () 
@@ -40,7 +40,7 @@ public abstract class Character : MonoBehaviour {
 		return health;
 	}
 
-	public int GetSpeed () 
+	public float GetSpeed () 
 	{
 		return speed;
 	}

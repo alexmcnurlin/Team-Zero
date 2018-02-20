@@ -44,7 +44,9 @@ public class NonCharacterCollisionController:MonoBehaviour {
 
         object[] tempStorage = new object[4];
 
-        if(tileType != TileTypes.None && (other.gameObject.tag == "MainPlayer" || other.gameObject.tag == "Enemy")) {
+		if(tileType != TileTypes.None && (other.gameObject.tag == "MainPlayer" || 
+			other.gameObject.tag == "Enemy" || 
+			other.gameObject.tag == "NPC")) {
 
             switch(tileType) {
                 case TileTypes.DefaultSpeed:

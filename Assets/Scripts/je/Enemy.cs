@@ -13,7 +13,7 @@ public class Enemy : Character {
 
 	public Enemy () 
 	{
-
+		velocity = 2;
 	}
 
 	protected override void OnCollision () 
@@ -21,16 +21,30 @@ public class Enemy : Character {
 
 	}
 
+	public void Move () 
+	{
+		Vector2 position = transform.position;
+		float translation = Time.deltaTime * velocity;
+		position.x += translation;
+		transform.position = position;
+	}
+
 	// Use this for initialization
 	void Start () 
 	{
 		
 	}
+
+	public void CollideWithObject(object[] temp) {
+		string type = (string) temp[0];
+		float speed = (float) temp[1];
+		velocity *= speed * 3;
+	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		Move ();
 	}
 
 	private bool IsEnemyVisibleOnScreen () 
