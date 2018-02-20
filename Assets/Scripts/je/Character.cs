@@ -10,15 +10,6 @@ public abstract class Character : MonoBehaviour {
 		UP,
 		DOWN
 	}
-	
-	public void Move ();
-	public bool IsDead ();
-	public int GetHealth();
-	public int GetSpeed();
-	public Direction GetDirection();
-	public void UpdateHealth (int newHealth);
-	public void UpdateSpeed (int newSpeed);
-	public void ChangeDirection (Direction newDirection);
 
 	protected abstract void OnCollision ();
 
@@ -33,7 +24,7 @@ public abstract class Character : MonoBehaviour {
 	private int speed;
 	private Direction direction;
 
-	Character (double velocity) {
+	public void Move() {
 
 	}
 
