@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
 	
+	public enum SoundType 
+	{
+		ENEMY_COLLISION = "lol.mp3",
+		PLAYER_JUMP = "jump.mp3"
+						
+	}
+	
 	private bool musicPlaying = false;
 	private bool fxPlaying = false;
 	private bool isMusted = false;
@@ -20,12 +27,12 @@ public class AudioManager : MonoBehaviour {
 		
 	}
 
-	public int PlayMusic(string music)
+	public int PlayMusic(SoundType music)
 	{
 	
 	}
 	
-	public int PlayFx(string fx)
+	public int PlayFx(SoundType fx)
 	{
 		
 	}
