@@ -39,7 +39,7 @@ public class Profile
 	public void MarkLevelCompleted (int levelId)
 	{
 		// will add checks to see if level already exists
-		this.completedLevels.Add(levelId)
+		this.completedLevels.Add(levelId);
 	}
 	public void MarkLevelCompleted (int levelId, int score)
 	{
