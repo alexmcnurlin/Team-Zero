@@ -5,25 +5,25 @@
 using System;
 using System.Collections.Generic;
 
-// include sql dependencies 
+// include sql dependencies
 // thanks https://forum.unity.com/threads/tutorial-how-to-integrate-sqlite-in-c.192282/
 // for sqlite dlls
 using System.Data;
 using Mono.Data.SqliteClient;
 
-public class ScoreManager 
+public class ScoreManager
 {
 	private IDbConnection _db;
 	private IDbCommand _dbcommand;
 	private IDataReader _dbreader;
 
-	public ScoreManager()
+	public ScoreManager ()
 	// Use this for initialization
 	{
 		// Connect to DB file	
-		_db=new SqliteConnection("URI=file:SadProfiles.db");
+		_db = new SqliteConnection ("URI=file:SadProfiles.db");
 		// see if db exists, create if it doesn't
-		CreateDB();
+		CreateDB ();
 	}
 
 	/*
@@ -38,8 +38,8 @@ public class ScoreManager
 		string sql = "SELECT `Username` from `Profiles`;";
 		IDataReader reader = ExecuteQuery (sql);
 		//add items in a List collection
-		while (reader.Read() ) {
-			profiles.Add( GetProfile(reader["Username"].ToString()) );
+		while (reader.Read ()) {
+			profiles.Add (GetProfile (reader ["Username"].ToString ()));
 		}
 		// return all Profiles
 		return profiles;
@@ -48,24 +48,24 @@ public class ScoreManager
 	public Profile GetProfile (string username)
 	// return a profile from database
 	{
-		string sql = "SELECT * FROM `Profiles` WHERE Username='"+username+"' LIMIT 1;";
+		string sql = "SELECT * FROM `Profiles` WHERE Username='" + username + "' LIMIT 1;";
 		IDataReader reader = ExecuteQuery (sql);
-		if(reader.Read()){
-			return new Profile(
-				reader["Username"].ToString(),
-				StringToList(reader["CompletedLevels"].ToString()),
-				StringToList(reader["tokens"].ToString()),
-				StringToDict(reader["score"].ToString())
+		if (reader.Read ()) {
+			return new Profile (
+				reader ["Username"].ToString (),
+				StringToList (reader ["CompletedLevels"].ToString ()),
+				StringToList (reader ["tokens"].ToString ()),
+				StringToDict (reader ["score"].ToString ())
 			);
 		}
 		// will only run if reader.read() fails
-		return new Profile(username);
+		return new Profile (username);
 	}
-		
-	public Profile CreateProfile( string username )
+
+	public Profile CreateProfile (string username)
 	// create a new profile object
 	{
-		return new Profile(username);
+		return new Profile (username);
 	}
 
 	public void RemoveProfile (Profile player)
@@ -74,14 +74,14 @@ public class ScoreManager
 		RemoveProfile (player.username);
 	}
 
-	public void RemoveProfile( string username)
+	public void RemoveProfile (string username)
 	// remove profile from database
 	{
 		string sql = "DELETE FROM `Profiles` WHERE `Username`='" + username + "' LIMIT 1;";
 		ExecuteQuery (sql);
 	}
 
-	public Profile SetLevelScore( Profile player, int levelId, int score)
+	public Profile SetLevelScore (Profile player, int levelId, int score)
 	// set profile object's level score
 	{
 		player.setLevelScore (levelId, score);
@@ -91,7 +91,7 @@ public class ScoreManager
 	public int GetLevelScore (Profile player, int levelId)
 	// get profile object's level score
 	{
-		return player.GetLevelScore(levelId);
+		return player.GetLevelScore (levelId);
 	}
 
 	public Profile MarkLevelCompleted (Profile player, int levelId)
@@ -111,13 +111,13 @@ public class ScoreManager
 	public List < int > GetTokensCollected (Profile player)
 	// get profile's tokens collected
 	{
-		return player.GetTokensCollected();
+		return player.GetTokensCollected ();
 	}
 
 	public Profile SetTokensCollected (Profile player, List < int > tokens)
 	// Set token list to profile's list of completed levels
 	{
-		player.SetTokensCollected(tokens);
+		player.SetTokensCollected (tokens);
 		return player;
 	}
 
@@ -128,10 +128,10 @@ public class ScoreManager
 		return player;
 	}
 
-	public void Save( Profile player )
+	public void Save (Profile player)
 	// writes profile to db
 	{
-		string sql = "INSERT OR REPLACE INTO `Profiles` (`Username`, `CompletedLevels`, `Tokens`, `Score`) VALUES ( '"+player.username.ToString()+"', '"+ListToString(player.completedLevels)+"', '"+ListToString(player.tokens)+"', '"+DictToString(player.score)+"');";
+		string sql = "INSERT OR REPLACE INTO `Profiles` (`Username`, `CompletedLevels`, `Tokens`, `Score`) VALUES ( '" + player.username.ToString () + "', '" + ListToString (player.completedLevels) + "', '" + ListToString (player.tokens) + "', '" + DictToString (player.score) + "');";
 		ExecuteQuery (sql);
 		SendToServer (player);
 	}
@@ -144,7 +144,7 @@ public class ScoreManager
 	 */
 
 
-	private void SendToServer( Profile player )
+	private void SendToServer (Profile player)
 	// Send player scores to server
 	{
 		// waiting on server implementation
@@ -153,52 +153,48 @@ public class ScoreManager
 	private List < int > StringToList (string str)
 	// converts string to list < int > , ie. "5,3,7" -> {5, 3, 7}
 	{
-		List < int > lst = new List < int >();
-		foreach(string i in str.Split(','))
-		{
+		List < int > lst = new List < int > ();
+		foreach (string i in str.Split(',')) {
 			int j;
-			int.TryParse(i, out j);
+			int.TryParse (i, out j);
 			lst.Add (j);
 		}
 		return lst;
 	}
 
-	private string ListToString( List < int > list)
+	private string ListToString (List < int > list)
 	// converts list < int > to string, ie. {5, 3, 7} -> "5,3,7"
 	{
 		string str = "";
-		for (int i = 0; list.Count > i; i++)
-		{
+		for (int i = 0; list.Count > i; i++) {
 			str = str + list [i].ToString () + ",";
 		}
-		return str.TrimEnd('n');
+		return str.TrimEnd ('n');
 	}
 
 	private Dictionary< int, int > StringToDict (string str)
 	// converts string to dictionary<int,int>  ie. "1:5,3:2" -> {<1,5>,<3,2>} 
 	{
-		Dictionary < int, int > dict = new Dictionary < int, int >();
-		foreach(string i in str.Split(','))
-		{
-			string[] d = i.Split(':');
+		Dictionary < int, int > dict = new Dictionary < int, int > ();
+		foreach (string i in str.Split(',')) {
+			string[] d = i.Split (':');
 			int key, val;
-			int.TryParse(d[0], out key);
-			int.TryParse(d[1], out val);
+			int.TryParse (d [0], out key);
+			int.TryParse (d [1], out val);
 			dict.Add (key, val);
 		}
 		return dict;
 	}
 
-	private string DictToString ( Dictionary < int, int > dict)
+	private string DictToString (Dictionary < int, int > dict)
 	// converts Dictionary < int, int > to a string  ie. {<1,5>,<3,2>} -> "1:5,3:2"  
 	{
 		string str = "";
-		foreach(KeyValuePair< int, int> entry in dict)
-		{
-			str = str + entry.Key.ToString() + ":" + entry.Value.ToString() + ",";
+		foreach (KeyValuePair< int, int> entry in dict) {
+			str = str + entry.Key.ToString () + ":" + entry.Value.ToString () + ",";
 		}
 
-		return str.TrimEnd(',');
+		return str.TrimEnd (',');
 	}
 
 	/*
@@ -207,21 +203,21 @@ public class ScoreManager
 	 * 
 	 */
 
-	private void CreateDB()
+	private void CreateDB ()
 	// see if db exists, create file if it doesn't
 	{
 		string sql = "CREATE TABLE IF NOT EXISTS `Profiles` (`Username` TEXT NOT NULL, `CompletedLevels` TEXT, `Tokens` TEXT, `Score` TEXT );";
 		ExecuteQuery (sql);
 	}
 
-	private IDataReader ExecuteQuery(string txtQuery)
+	private IDataReader ExecuteQuery (string txtQuery)
 	// execute query and then return IDataReader object with result
 	{ 
-		_db.Open();	
-		_dbcommand=_db.CreateCommand();
+		_db.Open ();	
+		_dbcommand = _db.CreateCommand ();
 		_dbcommand.CommandText = txtQuery;
-		_dbcommand.ExecuteNonQuery();
-		_dbreader=_dbcommand.ExecuteReader();
+		_dbcommand.ExecuteNonQuery ();
+		_dbreader = _dbcommand.ExecuteReader ();
 		_dbcommand.Dispose ();
 		_db.Close ();
 		return _dbreader;

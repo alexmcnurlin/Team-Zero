@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Character : MonoBehaviour {
+public abstract class Character : MonoBehaviour
+{
 
-	public enum Direction 
+	public enum Direction
 	{
 		LEFT,
 		RIGHT,
@@ -25,42 +26,42 @@ public abstract class Character : MonoBehaviour {
 	protected float speed;
 	private Direction direction;
 
-	public void Move () 
+	public void Move ()
 	{
 
 	}
 
-	public bool IsDead () 
+	public bool IsDead ()
 	{
 		return (health <= 0);
 	}
 
-	public int GetHealth () 
+	public int GetHealth ()
 	{
 		return health;
 	}
 
-	public float GetSpeed () 
+	public float GetSpeed ()
 	{
 		return speed;
 	}
 
-	public Direction GetDirection () 
+	public Direction GetDirection ()
 	{
 		return direction;
 	}
 
-	public void UpdateHealth (int newHealth) 
+	public void UpdateHealth (int newHealth)
 	{
 		health = newHealth;
 	}
 
-	public void UpdateSpeed (int newHealth) 
+	public void UpdateSpeed (int newHealth)
 	{
 		health = newHealth;
 	}
 
-	public void ChangeDirection (Direction newDirection) 
+	public void ChangeDirection (Direction newDirection)
 	{
 		direction = newDirection;
 	}

@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 
-public class Profile 
+public class Profile
 {
 
 	public string username;
@@ -26,18 +26,17 @@ public class Profile
 	// second option of two for initialization
 	{
 		this.username = username;
-		this.completedLevels = new List < int >();
-		this.tokens = tokens = new List < int >();
-		this.score = score = new Dictionary< int, int >();
+		this.completedLevels = new List < int > ();
+		this.tokens = tokens = new List < int > ();
+		this.score = score = new Dictionary< int, int > ();
 	}
 
-	public void setLevelScore(int levelId, int score)
+	public void setLevelScore (int levelId, int score)
 	// set the score for the given levelId
 	{
-		if (this.score.ContainsKey (levelId) ) {
+		if (this.score.ContainsKey (levelId)) {
 			this.score [levelId] = score;
-		} else
-		{
+		} else {
 			this.score.Add (levelId, score);
 		}
 	}
@@ -45,10 +44,9 @@ public class Profile
 	public int GetLevelScore (int levelId)
 	// returns score for given levelId or 0 if score isin't set
 	{		
-		if (this.score.ContainsKey (levelId) ) {
+		if (this.score.ContainsKey (levelId)) {
 			return this.score [levelId];
-		} else
-		{
+		} else {
 			return 0;
 		}	
 	}
@@ -57,9 +55,8 @@ public class Profile
 	// Add level to completed levels and save to db
 	{
 		// checks to see if level already exists as completed
-		if( ! this.completedLevels.Contains(levelId) )
-		{
-			this.completedLevels.Add(levelId);
+		if (!this.completedLevels.Contains (levelId)) {
+			this.completedLevels.Add (levelId);
 		}
 		// save to db
 		ScoreManager sc = new ScoreManager ();
@@ -70,9 +67,8 @@ public class Profile
 	// Add level to list of completed levels, and set level score
 	{
 		// checks to see if level already exists as completed
-		if( ! this.completedLevels.Contains(levelId) )
-		{
-			this.completedLevels.Add(levelId);
+		if (!this.completedLevels.Contains (levelId)) {
+			this.completedLevels.Add (levelId);
 		}
 		// set level score
 		this.setLevelScore (levelId, score);
@@ -90,13 +86,12 @@ public class Profile
 		this.tokens = tokens;
 	}
 
-	public void SetTokenCollected(int token)
+	public void SetTokenCollected (int token)
 	// Add token to profile's collected tokens
 	{
 		// Checks to see if token already exists as collected
-		if( ! this.tokens.Contains(token) )
-		{
-			this.tokens.Add(token);
+		if (!this.tokens.Contains (token)) {
+			this.tokens.Add (token);
 		}
 	}
 
