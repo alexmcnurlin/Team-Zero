@@ -28,26 +28,26 @@ public class AudioManagement : MonoBehaviour
 	public AudioSource source;
 
 
-	public void Start ()
+	public void Start()
 	{
-		source = GetComponent<AudioSource> ();
+		source = GetComponent<AudioSource>();
 
-		backgroundMusic = (AudioClip)Resources.Load<AudioClip> ("Sound/Background");
+		backgroundMusic = (AudioClip)Resources.Load<AudioClip>("Sound/Background");
 
 	}
 
-	public void Update ()
+	public void Update()
 	{
 		if (!source.isPlaying)
-			source.PlayOneShot (backgroundMusic);
+			source.PlayOneShot(backgroundMusic);
 	}
 
-	public int PlayMusic (SoundType music)
+	public int PlayMusic(SoundType music)
 	{
 		return 0;
 	}
 
-	public int PlayFx (SoundType fx)
+	public int PlayFx(SoundType fx)
 	{
 		return 0;
 	}

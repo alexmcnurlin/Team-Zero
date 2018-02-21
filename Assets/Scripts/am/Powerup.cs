@@ -14,23 +14,23 @@ public class Powerup : MonoBehaviour
 
 	private DateTime time;
 
-	public void ActivatePowerup ()
+	public void ActivatePowerup()
 	{
 		// No implmentation yet
 	}
 
-	public DateTime TimeLeft ()
+	public DateTime TimeLeft()
 	{
 		// No implementation yet
 		return DateTime.Now;
 	}
 
-	void Start ()
+	void Start()
 	{
 		// No implementation yet
 	}
 
-	void Update ()
+	void Update()
 	{
 		// No implementation yet
 	}
