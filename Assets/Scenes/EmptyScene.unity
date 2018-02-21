@@ -660,7 +660,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 723484926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58e59a19ccf5e4d06a516beca365ae8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 351238f9e13e34c3a8b4f8d604b86f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &723484929
@@ -1701,6 +1701,7 @@ GameObject:
   - component: {fileID: 1586896544}
   - component: {fileID: 1586896543}
   - component: {fileID: 1586896547}
+  - component: {fileID: 1586896545}
   - component: {fileID: 1586896546}
   m_Layer: 0
   m_Name: SadPancakeBody
@@ -1766,6 +1767,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1586896545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1586896542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1e2eb32d3744603b4b8370b8ffc824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  counter: 0
+  local_speed: {x: 10, y: 10}
 --- !u!61 &1586896546
 BoxCollider2D:
   m_ObjectHideFlags: 0
