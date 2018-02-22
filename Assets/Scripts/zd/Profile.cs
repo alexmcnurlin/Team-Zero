@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 
-public class Profile 
+public class Profile
 {
 
 	public string username;
@@ -13,7 +13,7 @@ public class Profile
 	public Dictionary < int, int > score;
 
 
-	public Profile (string username, List < int > completedLevels, List < int > tokens, Dictionary< int, int > score)
+	public Profile(string username, List < int > completedLevels, List < int > tokens, Dictionary< int, int > score)
 	// first option of two for initialization
 	{
 		this.username = username;
@@ -22,7 +22,7 @@ public class Profile
 		this.score = score;
 	}
 
-	public Profile (string username)
+	public Profile(string username)
 	// second option of two for initialization
 	{
 		this.username = username;
@@ -34,57 +34,53 @@ public class Profile
 	public void setLevelScore(int levelId, int score)
 	// set the score for the given levelId
 	{
-		if (this.score.ContainsKey (levelId) ) {
-			this.score [levelId] = score;
-		} else
-		{
-			this.score.Add (levelId, score);
+		if (this.score.ContainsKey(levelId)) {
+			this.score[levelId] = score;
+		} else {
+			this.score.Add(levelId, score);
 		}
 	}
 
-	public int GetLevelScore (int levelId)
+	public int GetLevelScore(int levelId)
 	// returns score for given levelId or 0 if score isin't set
 	{		
-		if (this.score.ContainsKey (levelId) ) {
-			return this.score [levelId];
-		} else
-		{
+		if (this.score.ContainsKey(levelId)) {
+			return this.score[levelId];
+		} else {
 			return 0;
 		}	
 	}
 
-	public void MarkLevelCompleted (int levelId)
+	public void MarkLevelCompleted(int levelId)
 	// Add level to completed levels and save to db
 	{
 		// checks to see if level already exists as completed
-		if( ! this.completedLevels.Contains(levelId) )
-		{
+		if (!this.completedLevels.Contains(levelId)) {
 			this.completedLevels.Add(levelId);
 		}
 		// save to db
-		ScoreManager sc = new ScoreManager ();
-		sc.Save (this);
+		ScoreManager sc = new ScoreManager();
+		sc.Save(this);
 	}
 
-	public void MarkLevelCompleted (int levelId, int score)
+	public void MarkLevelCompleted(int levelId, int score)
 	// Add level to list of completed levels, and set level score
 	{
 		// checks to see if level already exists as completed
-		if( ! this.completedLevels.Contains(levelId) )
-		{
+		if (!this.completedLevels.Contains(levelId)) {
 			this.completedLevels.Add(levelId);
 		}
 		// set level score
-		this.setLevelScore (levelId, score);
+		this.setLevelScore(levelId, score);
 	}
 
-	public List < int > GetTokensCollected ()
+	public List < int > GetTokensCollected()
 	// returns list of tokens collected 
 	{
 		return this.tokens;
 	}
 
-	public void SetTokensCollected (List < int > tokens)
+	public void SetTokensCollected(List < int > tokens)
 	// Overwrite tokens collected
 	{
 		this.tokens = tokens;
@@ -94,8 +90,7 @@ public class Profile
 	// Add token to profile's collected tokens
 	{
 		// Checks to see if token already exists as collected
-		if( ! this.tokens.Contains(token) )
-		{
+		if (!this.tokens.Contains(token)) {
 			this.tokens.Add(token);
 		}
 	}
