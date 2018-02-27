@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 75fca132a5146564eb2be0326d5254e7
-timeCreated: 1519113642
+timeCreated: 1519182243
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -34,9 +34,9 @@ TextureImporter:
     21300054: castleHalfMid.png
     21300056: castleHalfRight.png
     21300058: castleHillLeft.png
-    21300060: castleHillLeft2.png
+    21300060: castleHillRight2.png
     21300062: castleHillRight.png
-    21300064: castleHillRight2.png
+    21300064: castleHillLeft2.png
     21300066: castleLedgeLeft.png
     21300068: castleLedgeRight.png
     21300070: castleLeft.png
@@ -104,8 +104,8 @@ TextureImporter:
     21300194: lock_green.png
     21300196: lock_red.png
     21300198: lock_yellow.png
-    21300200: rockHillLeft.png
-    21300202: rockHillRight.png
+    21300200: stoneHillLeft.png
+    21300202: stoneHillRight.png
     21300204: ropeAttached.png
     21300206: ropeHorizontal.png
     21300208: ropeVertical.png
@@ -203,7 +203,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 2
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -218,7 +218,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 69
+  spritePixelsToUnits: 70
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -682,7 +682,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: castleHillLeft2.png
+      name: castleHillRight2.png
       rect:
         serializedVersion: 2
         x: 792
@@ -710,7 +710,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: castleHillRight2.png
+      name: castleHillLeft2.png
       rect:
         serializedVersion: 2
         x: 792
@@ -731,8 +731,8 @@ TextureImporter:
         y: 46
         width: 5
         height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: -6.1, y: -0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -745,8 +745,8 @@ TextureImporter:
         y: 46
         width: 5
         height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 7.1, y: -0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1011,8 +1011,8 @@ TextureImporter:
         y: 26
         width: 5
         height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: -6, y: -0.94}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1025,8 +1025,8 @@ TextureImporter:
         y: 6
         width: 5
         height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 7, y: -0.94}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1375,8 +1375,8 @@ TextureImporter:
         y: 44
         width: 5
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: -6, y: -0.435}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1389,8 +1389,8 @@ TextureImporter:
         y: 18
         width: 5
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 6.9, y: -0.435}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1662,7 +1662,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: rockHillLeft.png
+      name: stoneHillLeft.png
       rect:
         serializedVersion: 2
         x: 432
@@ -1676,7 +1676,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: rockHillRight.png
+      name: stoneHillRight.png
       rect:
         serializedVersion: 2
         x: 432
@@ -2671,7 +2671,7 @@ TextureImporter:
       tessellationDetail: -1
     outline: []
     physicsShape: []
-  spritePackingTag: 
+  spritePackingTag: Tiles
   userData: 
   assetBundleName: 
   assetBundleVariant: 
