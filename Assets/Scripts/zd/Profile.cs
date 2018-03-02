@@ -27,8 +27,8 @@ public class Profile
 	{
 		this.username = username;
 		this.completedLevels = new List < int >();
-		this.tokens = tokens = new List < int >();
-		this.score = score = new Dictionary< int, int >();
+		this.tokens = new List < int >();
+		this.score = new Dictionary< int, int >();
 	}
 
 	public void setLevelScore(int levelId, int score)
