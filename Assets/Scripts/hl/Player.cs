@@ -18,24 +18,15 @@ public class Player : Character
 
     private void FixedUpdate()
     {
-        // Call Movement every iteration of FixedUpdate
-        charAction = Movement();
-
-        //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-        rb2d.AddForce(charAction);
-    }
-
-    public Vector2 Movement()
-    {
         //Store the current horizontal input in the float moveHorizontal.
         float moveHorizontal = Input.GetAxis("Horizontal");
 
         //Store the current vertical input in the float moveVertical.
         float moveVertical = Input.GetAxis("Vertical");
 
-        //Use the two store floats to create a new Vector2 variable movement.
-        Vector2 movement = new Vector2(localSpeed.x * moveHorizontal, localSpeed.y * moveVertical);
-
+        // Call Movement every iteration of FixedUpdate
+        Movement(moveHorizontal, moveVertical);
+        
         // Prevent double jumping
         if (Input.GetKeyDown("space") && (midjump == "no"))
         {
@@ -46,10 +37,18 @@ public class Player : Character
         if (GetComponent<Rigidbody2D>().velocity.y == 0)
             midjump = "no";
 
-        return movement;
     }
 
-    void Jump()
+    public void Movement(float moveHorizontal, float moveVertical)
+    {
+        //Use the two store floats to create a new Vector2 variable movement.
+        Vector2 movement = new Vector2(localSpeed.x * moveHorizontal, localSpeed.y * moveVertical);
+
+        //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
+        rb2d.AddForce(movement);
+    }
+
+    public void Jump()
     {
         
         rb2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
