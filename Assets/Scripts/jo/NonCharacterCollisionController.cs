@@ -54,6 +54,7 @@ public class NonCharacterCollisionController:MonoBehaviour
                     tempStorage[0] = "NormalSpeed";
                     tempStorage[1] = 1f;
                     other.gameObject.SendMessage("CollideWithObject", tempStorage);
+					break;
 
                 case TileTypes.Slowing:
                     tempStorage[1] = 0.6f;
