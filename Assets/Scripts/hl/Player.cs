@@ -4,92 +4,111 @@ using UnityEngine;
 
 public class Player : Character
 {
+    private Rigidbody2D rb2d;
+    public int counter;
+    public Vector2 localSpeed = new Vector2(10, 0);
+    public Vector2 charAction;
+    public string midjump = "no";
 
-	private Rigidbody2D rb2d;
-	public int counter;
-	public Vector2 local_speed = new Vector2(10, 0);
+    // Use this for initialization
+    void Start()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+    }
 
-	// Use this for initialization
-	void Start()
-	{
-		rb2d = GetComponent<Rigidbody2D>();
-	}
+    private void FixedUpdate()
+    {
+        // Call Movement every iteration of FixedUpdate
+        charAction = Movement();
 
-	private void FixedUpdate()
-	{
-		//Store the current horizontal input in the float moveHorizontal.
-		float moveHorizontal = Input.GetAxis("Horizontal");
+        //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
+        rb2d.AddForce(charAction);
+    }
 
-		//Store the current vertical input in the float moveVertical.
-		float moveVertical = Input.GetAxis("Vertical");
+    public Vector2 Movement()
+    {
+        //Store the current horizontal input in the float moveHorizontal.
+        float moveHorizontal = Input.GetAxis("Horizontal");
 
-		//Use the two store floats to create a new Vector2 variable movement.
-		Vector2 movement = new Vector2(local_speed.x * moveHorizontal, local_speed.y * moveVertical);
-       
-		if (Input.GetKeyDown("space")) {
-			rb2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
-		}
+        //Store the current vertical input in the float moveVertical.
+        float moveVertical = Input.GetAxis("Vertical");
 
-		//Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-		rb2d.AddForce(movement);
-       
+        //Use the two store floats to create a new Vector2 variable movement.
+        Vector2 movement = new Vector2(localSpeed.x * moveHorizontal, localSpeed.y * moveVertical);
 
-	}
+        // Prevent double jumping
+        if (Input.GetKeyDown("space") && (midjump == "no"))
+        {
+            Jump();
+            midjump = "yes";
+        }
 
-	// Update is called once per frame
-	void Update()
-	{
+        if (GetComponent<Rigidbody2D>().velocity.y == 0)
+            midjump = "no";
 
-	}
+        return movement;
+    }
 
-	void ApplyPowerup()
-	{
+    void Jump()
+    {
+        
+        rb2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
+    }
 
-	}
+    // Update is called once per frame
+    void Update()
+    {
 
-	void CollideWithObject(object tmp)
-	{
-		// look at Jorge's stuff
-	}
+    }
 
-	void CollideWithObject(string kill)
-	{
-		// look at Jorge's stuff
-	}
+    void ApplyPowerup()
+    {
 
-	void CollideWithResettingObject()
-	{
+    }
 
-	}
+    void CollideWithObject(object tmp)
+    {
+        // look at Jorge's stuff
+    }
 
-	void CollideWithObjectSound()
-	{
+    void CollideWithObject(string kill)
+    {
+        // look at Jorge's stuff
+    }
 
-	}
+    void CollideWithResettingObject()
+    {
 
-	void OnTriggerEnter(Collider other)
-	{
+    }
 
-	}
+    void CollideWithObjectSound()
+    {
 
-	void SetScoreText()
-	{
+    }
 
-	}
+    void OnTriggerEnter(Collider other)
+    {
 
-	void SendPlayerScore()
-	{
+    }
 
-	}
+    void SetScoreText()
+    {
 
-	void InteractsWithUI()
-	{
+    }
 
-	}
+    void SendPlayerScore()
+    {
 
-	override protected void OnCollision()
-	{
+    }
 
-	}
+    void InteractsWithUI()
+    {
+
+    }
+
+    override protected void OnCollision()
+    {
+
+    }
 
 }
