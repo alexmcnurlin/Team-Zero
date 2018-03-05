@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Player : Character
 {
-	private Rigidbody2D rb2d;
-	public int counter;
-	public Vector2 localSpeed = new Vector2(10, 0);
+    private Rigidbody2D rb2d;
+    public int counter;
+    public Vector2 localSpeed = new Vector2(10, 0);
     public Vector2 charAction;
     public string midjump = "no";
 
-	// Use this for initialization
-	void Start()
-	{
-		rb2d = GetComponent<Rigidbody2D>();
-	}
+    // Use this for initialization
+    void Start()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+    }
 
-	private void FixedUpdate()
-	{
+    private void FixedUpdate()
+    {
         // Call Movement every iteration of FixedUpdate
         charAction = Movement();
 
@@ -55,60 +55,60 @@ public class Player : Character
         rb2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
     }
 
-	// Update is called once per frame
-	void Update()
-	{
+    // Update is called once per frame
+    void Update()
+    {
 
-	}
+    }
 
-	void ApplyPowerup()
-	{
+    void ApplyPowerup()
+    {
 
-	}
+    }
 
-	void CollideWithObject(object tmp)
-	{
-		// look at Jorge's stuff
-	}
+    void CollideWithObject(object tmp)
+    {
+        // look at Jorge's stuff
+    }
 
-	void CollideWithObject(string kill)
-	{
-		// look at Jorge's stuff
-	}
+    void CollideWithObject(string kill)
+    {
+        // look at Jorge's stuff
+    }
 
-	void CollideWithResettingObject()
-	{
+    void CollideWithResettingObject()
+    {
 
-	}
+    }
 
-	void CollideWithObjectSound()
-	{
+    void CollideWithObjectSound()
+    {
 
-	}
+    }
 
-	void OnTriggerEnter(Collider other)
-	{
+    void OnTriggerEnter(Collider other)
+    {
 
-	}
+    }
 
-	void SetScoreText()
-	{
+    void SetScoreText()
+    {
 
-	}
+    }
 
-	void SendPlayerScore()
-	{
+    void SendPlayerScore()
+    {
 
-	}
+    }
 
-	void InteractsWithUI()
-	{
+    void InteractsWithUI()
+    {
 
-	}
+    }
 
-	override protected void OnCollision()
-	{
+    override protected void OnCollision()
+    {
 
-	}
+    }
 
 }
