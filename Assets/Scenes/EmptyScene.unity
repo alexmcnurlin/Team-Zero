@@ -848,12 +848,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 979993900}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54b49a2e0346fda4fa42474e8d5a735a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pancake: {fileID: 1586896545}
+  shouldPass: 0
 --- !u!4 &979993902
 Transform:
   m_ObjectHideFlags: 0
@@ -1822,7 +1823,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counter: 0
-  local_speed: {x: 10, y: 10}
+  localSpeed: {x: 10, y: 0}
+  charAction: {x: 0, y: 0}
+  midjump: no
 --- !u!61 &1586896546
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -20,16 +20,16 @@ public class ScoreManager
 	public ScoreManager()
 	// Use this for initialization
 	{
-		// Connect to DB file	
+		// Connect to DB file
 		_db = new SqliteConnection("URI=file:SadProfiles.db");
 		// see if db exists, create if it doesn't
 		CreateDB();
 	}
 
 	/*
-	 * 
+	 *
 	 * Public Functions
-	 * 
+	 *
 	 */
 	public List<Profile> GetAvailableProfiles()
 	// return profiles in database
@@ -137,10 +137,10 @@ public class ScoreManager
 	}
 
 
-	/* 
-	 * 
+	/*
+	 *
 	 * Private functions
-	 * 
+	 *
 	 */
 
 
@@ -173,7 +173,7 @@ public class ScoreManager
 	}
 
 	private Dictionary< int, int > StringToDict(string str)
-	// converts string to dictionary<int,int>  ie. "1:5,3:2" -> {<1,5>,<3,2>} 
+	// converts string to dictionary<int,int>  ie. "1:5,3:2" -> {<1,5>,<3,2>}
 	{
 		Dictionary < int, int > dict = new Dictionary < int, int >();
 		foreach (string i in str.Split(',')) {
@@ -187,7 +187,7 @@ public class ScoreManager
 	}
 
 	private string DictToString(Dictionary < int, int > dict)
-	// converts Dictionary < int, int > to a string  ie. {<1,5>,<3,2>} -> "1:5,3:2"  
+	// converts Dictionary < int, int > to a string  ie. {<1,5>,<3,2>} -> "1:5,3:2"
 	{
 		string str = "";
 		foreach (KeyValuePair< int, int> entry in dict) {
@@ -198,9 +198,9 @@ public class ScoreManager
 	}
 
 	/*
-	 * 
+	 *
 	 * SQLlite functions
-	 * 
+	 *
 	 */
 
 	private void CreateDB()
@@ -212,8 +212,8 @@ public class ScoreManager
 
 	private IDataReader ExecuteQuery(string txtQuery)
 	// execute query and then return IDataReader object with result
-	{ 
-		_db.Open();	
+	{
+		_db.Open();
 		_dbcommand = _db.CreateCommand();
 		_dbcommand.CommandText = txtQuery;
 		_dbcommand.ExecuteNonQuery();
@@ -223,5 +223,8 @@ public class ScoreManager
 		return _dbreader;
 	}
 
-
+	private void fakeFunc ()
+	{
+		// doesn't do anything, just so show that superclass functions will be overwritten.
+	}
 }
