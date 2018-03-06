@@ -9,6 +9,7 @@ public class Player : Character
     public Vector2 localSpeed = new Vector2(10, 0);
     public Vector2 charAction;
     public string midjump = "no";
+    private Powerup playerPowerup;
 
     // Use this for initialization
     void Start()
@@ -67,15 +68,15 @@ public class Player : Character
 
         /* ToDo, differentiate various powerups
 
-        if (powerup.type == Modifier.INVINCIBLE)
+        if (playerPowerup.type == Modifier.INVINCIBLE)
         {
             // make invincible
         }
 
-        else if(powerup.type == Modifier.JUMPHEIGHT)
+        else if(playerPowerup.type == Modifier.JUMPHEIGHT)
         {}
 
-        else if(powerup.type == Modifier.SPEED)
+        else if(playerPowerup.type == Modifier.SPEED)
         {}
         */
     }    
