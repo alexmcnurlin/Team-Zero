@@ -60,9 +60,9 @@ public class Player : Character
 
     }
 
-    void ApplyPowerup()
+    void ApplyPowerup(Powerup powerup)
     {
-
+        Debug.Log("Accepted" + powerup.type + ".");
     }
 
     void CollideWithObject(object tmp)
