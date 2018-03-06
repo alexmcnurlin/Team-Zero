@@ -3,17 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Modifier
+{
+    INVINCIBLE,
+    JUMPHEIGHT,
+    SPEED,
+}
+
 public class Powerup : MonoBehaviour
 {
     public int id;
-
-    public enum Modifier
-    {
-        INVINCIBLE,
-    }
+    public Modifier type;
+    public int length = 10;
 
     private DateTime time;
-    private int length = 10;
 
     public void ActivatePowerup()
     {
@@ -37,7 +40,7 @@ public class Powerup : MonoBehaviour
     }
 
     void Start()
-    {
+    { 
         // No implementation yet
     }
 
