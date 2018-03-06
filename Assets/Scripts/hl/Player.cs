@@ -8,7 +8,7 @@ public class Player : Character
     public int counter;
     public Vector2 localSpeed = new Vector2(10, 0);
     public Vector2 charAction;
-    public string midjump = "no";
+    public string midJump = "no";
     private Powerup playerPowerup;
 
     // Use this for initialization
@@ -29,14 +29,14 @@ public class Player : Character
         Movement(moveHorizontal, moveVertical);
         
         // Prevent double jumping
-        if (Input.GetKeyDown("space") && (midjump == "no"))
+        if (Input.GetKeyDown("space") && (midJump == "no"))
         {
             Jump();
-            midjump = "yes";
+            midJump = "yes";
         }
 
         if (GetComponent<Rigidbody2D>().velocity.y == 0)
-            midjump = "no";
+            midJump = "no";
 
     }
 
@@ -51,7 +51,6 @@ public class Player : Character
 
     public void Jump()
     {
-        
         rb2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
     }
 
