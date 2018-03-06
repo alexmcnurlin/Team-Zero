@@ -83,5 +83,13 @@ public class NonCharacterCollisionController:MonoBehaviour
 
         }
 
+        if(itemType == ItemTypes.Powerup && other.gameObject.tag == "Player") 
+        {
+            Powerup powerup = this.GetComponent<Powerup>() ;
+            other.gameObject.SendMessage("ApplyPowerup", powerup);
+            Debug.Log("Powerup should be destroyed");
+            Destroy(gameObject);
+        }
+
     }
 }

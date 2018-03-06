@@ -62,6 +62,7 @@ public class Player : Character
 
     public void ApplyPowerup(Powerup powerup)
     {
+        Debug.Log("Accepted" + powerup.type + ".");
         powerup.ActivatePowerup();
 
         /* ToDo, differentiate various powerups
