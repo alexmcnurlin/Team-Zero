@@ -12,44 +12,57 @@ public class AudioManagement : MonoBehaviour
 		BG_MUSIC
 	}
 
-	/*
-    The following vars will be used in the
-    future but cause warnings right now
-    so they have been commented out
-	
-	//private bool musicPlaying = false;
-	//private bool fxPlaying = false;
-	//private bool isMusted = false;
-	//private bool isInit = false;
-    */
+    Player pancake;
 
+	public AudioClip bgMusic;
+	public AudioSource bgSource;
 
-	public AudioClip backgroundMusic;
-	public AudioSource source;
+    public AudioSource jumpSource;
+    public AudioClip jumpClip;
 
+    public float nextSoundTime = 0;
 
-	public void Start()
+    public bool midjump = false;
+
+    public void Start()
 	{
-		source = GetComponent<AudioSource>();
+		bgSource = GetComponent<AudioSource>();
+        jumpSource = GetComponent<AudioSource>();
 
-		backgroundMusic = (AudioClip)Resources.Load<AudioClip>("Sound/Background");
+        bgMusic = (AudioClip)Resources.Load<AudioClip>("Sound/Background");
+        jumpClip = (AudioClip)Resources.Load<AudioClip>("Sound/jump");
 
-	}
+        jumpSource.clip = jumpClip;
 
-	public void Update()
-	{
-		if (!source.isPlaying)
-			source.PlayOneShot(backgroundMusic);
-	}
+        pancake = GameObject.Find("SadPancakeBody").GetComponent<Player>();
+    }
 
-	public int PlayMusic(SoundType music)
+    public void Update()
+    {
+        if (!bgSource.isPlaying)
+            bgSource.PlayOneShot(bgMusic);
+
+        if (pancake.GetComponent<Rigidbody2D>().velocity.y == 0)
+            midjump = false;
+
+        if(pancake.GetComponent<Rigidbody2D>().velocity.y > 0 && !midjump )
+        {
+            PlayFx("jump");
+            midjump = true;
+        }
+    }
+
+    public int PlayMusic(SoundType music)
 	{
 		return 0;
 	}
 
-	public int PlayFx(SoundType fx)
+	public void PlayFx(string fx)
 	{
-		return 0;
+        if (fx == "Jump" || fx == "jump")
+        {
+            jumpSource.Play();
+        }
 	}
-	
+
 }
