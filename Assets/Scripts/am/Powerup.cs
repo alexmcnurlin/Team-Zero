@@ -39,6 +39,17 @@ public class Powerup : MonoBehaviour
         return time.Subtract(now);
     }
 
+    public bool IsExpired()
+    {
+        TimeSpan notime = new TimeSpan(0);
+        bool returnVal = (TimeLeft().CompareTo(notime) < 0);
+        if (returnVal)
+        {
+            Debug.Log("Powerup has expired");
+        }
+        return returnVal;
+    }
+
     void Start()
     { 
         // No implementation yet
