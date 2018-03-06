@@ -51,7 +51,6 @@ public class Player : Character
 
     public void Jump()
     {
-        
         rb2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
     }
 
