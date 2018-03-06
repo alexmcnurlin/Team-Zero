@@ -60,10 +60,24 @@ public class Player : Character
 
     }
 
-    void ApplyPowerup()
+    public void ApplyPowerup(Powerup powerup)
     {
+        powerup.ActivatePowerup();
 
-    }
+        /* ToDo, differentiate various powerups
+
+        if (powerup.type == Modifier.INVINCIBLE)
+        {
+            // make invincible
+        }
+
+        else if(powerup.type == Modifier.JUMPHEIGHT)
+        {}
+
+        else if(powerup.type == Modifier.SPEED)
+        {}
+        */
+    }    
 
     void CollideWithObject(object tmp)
     {
