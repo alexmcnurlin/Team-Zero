@@ -45,7 +45,7 @@ public class AudioManagement : MonoBehaviour
         if (pancake.GetComponent<Rigidbody2D>().velocity.y == 0)
             midjump = false;
 
-        if(pancake.GetComponent<Rigidbody2D>().velocity.y > 0 && !midjump )
+        if(pancake.GetComponent<Rigidbody2D>().velocity.y > 1 && !midjump )
         {
             PlayFx("jump");
             midjump = true;
