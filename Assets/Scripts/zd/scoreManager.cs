@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Data;
 using Mono.Data.SqliteClient;
 
-public class ScoreManager
+public class ScoreManager:SuperClass
 {
 	private IDbConnection _db;
 	private IDbCommand _dbcommand;
@@ -223,8 +223,8 @@ public class ScoreManager
 		return _dbreader;
 	}
 
-	private void fakeFunc ()
+	public override void FakeFunc()
 	{
-		// doesn't do anything, just so show that superclass functions will be overwritten.
+		// doesn't do anything, just to show that superclass functions will be overwritten.
 	}
 }
