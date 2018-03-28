@@ -7,62 +7,86 @@ public class AudioManagement : MonoBehaviour
 
 	public enum SoundType
 	{
-		ENEMY_COLLISION,
-		PLAYER_JUMP,
+		DAMAGE,
+		JUMP,
+        POWERUP,
 		BG_MUSIC
 	}
 
     Player pancake;
 
-	public AudioClip bgMusic;
-	public AudioSource bgSource;
+    public AudioSource aSource;
 
-    public AudioSource jumpSource;
+    public AudioClip bgMusic;
     public AudioClip jumpClip;
-
-    public float nextSoundTime = 0;
+    public AudioClip damageClip;
+    public AudioClip pUpClip;
 
     public bool midjump = false;
+    public bool falling = false;
 
     public void Start()
 	{
-		bgSource = GetComponent<AudioSource>();
-        jumpSource = GetComponent<AudioSource>();
+        aSource = GetComponent<AudioSource>();
 
-        bgMusic = (AudioClip)Resources.Load<AudioClip>("Sound/Background");
-        jumpClip = (AudioClip)Resources.Load<AudioClip>("Sound/jump");
+        bgMusic = (AudioClip)Resources.Load<AudioClip>("Sound/Allstar");
 
-        jumpSource.clip = jumpClip;
+        jumpClip = (AudioClip)Resources.Load<AudioClip>("Sound/Jump");
+        damageClip = (AudioClip)Resources.Load<AudioClip>("Sound/Damage");
+        pUpClip = (AudioClip)Resources.Load<AudioClip>("Sound/PowerUp");
+
+        aSource.clip = jumpClip;
+
+        aSource.PlayOneShot(bgMusic);
 
         pancake = GameObject.Find("SadPancakeBody").GetComponent<Player>();
     }
 
     public void Update()
     {
-        if (!bgSource.isPlaying)
-            bgSource.PlayOneShot(bgMusic);
+
 
         if (pancake.GetComponent<Rigidbody2D>().velocity.y == 0)
-            midjump = false;
-
-        if(pancake.GetComponent<Rigidbody2D>().velocity.y > 1 && !midjump )
         {
-            PlayFx("jump");
+            if (falling)
+            {
+                PlayFx(SoundType.DAMAGE);
+            }
+
+            falling = false;
+            midjump = false;
+        }
+
+        if (pancake.GetComponent<Rigidbody2D>().velocity.y > 3 && !midjump )
+        {
+            PlayFx(SoundType.JUMP);
             midjump = true;
+        }
+        if (pancake.GetComponent<Rigidbody2D>().velocity.y < -1 && !midjump)
+        {
+            falling = true;
         }
     }
 
     public int PlayMusic(SoundType music)
 	{
-		return 0;
+        aSource.PlayOneShot(bgMusic);
+        return 1;
 	}
 
-	public void PlayFx(string fx)
+	public void PlayFx(SoundType fx)
 	{
-        if (fx == "Jump" || fx == "jump")
+        switch(fx)
         {
-            jumpSource.Play();
+            case SoundType.DAMAGE:
+                aSource.PlayOneShot(damageClip);
+                break;
+            case SoundType.JUMP:
+                aSource.PlayOneShot(jumpClip);
+                break;
+            case SoundType.POWERUP:
+                aSource.PlayOneShot(pUpClip);
+                break;
         }
 	}
-
 }
