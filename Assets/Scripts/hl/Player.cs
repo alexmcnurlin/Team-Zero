@@ -19,7 +19,7 @@ public class Player : Character
 
     private void FixedUpdate()
     {
-        
+
     }
 
     public void Movement(float moveHorizontal, float moveVertical)
