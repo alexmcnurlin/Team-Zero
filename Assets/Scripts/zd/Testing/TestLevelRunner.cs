@@ -52,7 +52,7 @@ public class TestLevelRunner : MonoBehaviour
 			
 			Debug.Log ("Jumping over ditch");
 			yield return this.tc.Jump ();
-			yield return this.tc.MoveRight (5);
+			yield return this.tc.MoveRight (4);
 			yield return this.tc.Wait (2);
 			Debug.Log ("Continuing to finish");
 			yield return this.tc.MoveRight (3);

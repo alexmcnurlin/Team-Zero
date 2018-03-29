@@ -1551,7 +1551,7 @@ Tilemap:
     e33: 1
   m_TileRefreshArray:
   - serializedVersion: 1
-    m_DirtyIndex: 431
+    m_DirtyIndex: 0
 --- !u!114 &31933410 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114263311208041546, guid: b82b8689a7ba1d74d8244af319b99b8f,
@@ -13028,7 +13028,7 @@ Tilemap:
     e33: 1
   m_TileRefreshArray:
   - serializedVersion: 1
-    m_DirtyIndex: 106
+    m_DirtyIndex: 0
 --- !u!19719996 &206781925
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -13261,9 +13261,9 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840082764}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54b49a2e0346fda4fa42474e8d5a735a, type: 3}
+  m_Script: {fileID: 11500000, guid: da6c86dedb38bee4f930f4f820bdd13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pancake: {fileID: 1952697955}
@@ -22258,7 +22258,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.3
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
