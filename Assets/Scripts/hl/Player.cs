@@ -19,25 +19,7 @@ public class Player : Character
 
     private void FixedUpdate()
     {
-        //Store the current horizontal input in the float moveHorizontal.
-        float moveHorizontal = Input.GetAxis("Horizontal");
-
-        //Store the current vertical input in the float moveVertical.
-        float moveVertical = Input.GetAxis("Vertical");
-
-        // Call Movement every iteration of FixedUpdate
-        Movement(moveHorizontal, moveVertical);
         
-        // Prevent double jumping
-        if (Input.GetKeyDown("space") && (midJump == "no"))
-        {
-            Jump();
-            midJump = "yes";
-        }
-
-        if (GetComponent<Rigidbody2D>().velocity.y == 0)
-            midJump = "no";
-
     }
 
     public void Movement(float moveHorizontal, float moveVertical)
@@ -57,6 +39,24 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
+        //Store the current horizontal input in the float moveHorizontal.
+        float moveHorizontal = Input.GetAxis("Horizontal");
+
+        //Store the current vertical input in the float moveVertical.
+        float moveVertical = Input.GetAxis("Vertical");
+
+        // Call Movement every iteration of FixedUpdate
+        Movement(moveHorizontal, moveVertical);
+
+        // Prevent double jumping
+        if (Input.GetKeyDown("space") && (midJump == "no"))
+        {
+            Jump();
+            midJump = "yes";
+        }
+
+        if (GetComponent<Rigidbody2D>().velocity.y == 0)
+            midJump = "no";
 
     }
 
