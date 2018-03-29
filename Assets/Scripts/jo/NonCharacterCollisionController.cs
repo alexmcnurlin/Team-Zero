@@ -20,13 +20,33 @@ public class NonCharacterCollisionController:MonoBehaviour
     {
         None,
         Token,
-        Powerup
+        Powerup,
+        Coin
+    }
+
+    public enum CoinTypes 
+    {
+        None,
+        Gold,
+        Silver,
+        Bronze
     }
 
     public TileTypes tileType;
     public ItemTypes itemType;
+    public CoinTypes coinType;
+    
     public int damageGiving = 0;
-        
+
+    public InGameProfileController scoreManager;
+
+    public Dictionary<CoinTypes, int> coinScoreValues = new Dictionary<CoinTypes, int>
+    {
+        {CoinTypes.Gold, 10},
+        {CoinTypes.Silver, 5},
+        {CoinTypes.Bronze, 1}
+    };
+
 
     // Use this for initialization
     void Start()
@@ -38,6 +58,25 @@ public class NonCharacterCollisionController:MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        object[] tempStorage = new object[4];
+
+        if(itemType == ItemTypes.Powerup && other.gameObject.tag == "MainPlayer") {
+            Powerup powerup = this.GetComponent<Powerup>();
+            other.gameObject.SendMessage("ApplyPowerup", powerup);
+            Debug.Log("Powerup should be destroyed");
+            Destroy(gameObject);
+        }
+
+        if(itemType == ItemTypes.Coin && other.gameObject.tag == "MainPlayer") {
+
+            scoreManager.gameObject.SendMessage("AddScore", coinScoreValues[coinType]);
+            Destroy(gameObject);
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -69,7 +108,7 @@ public class NonCharacterCollisionController:MonoBehaviour
 
                 case TileTypes.Damaging:
                     tempStorage[0] = "Damaging";
-                    tempStorage[1] = 1; //should be a variable up there
+                    tempStorage[1] = 1f; //should be a variable up there
                     other.gameObject.SendMessage("CollideWithObject", tempStorage);
                     break;
 
@@ -83,13 +122,7 @@ public class NonCharacterCollisionController:MonoBehaviour
 
         }
 
-        if(itemType == ItemTypes.Powerup && other.gameObject.tag == "Player") 
-        {
-            Powerup powerup = this.GetComponent<Powerup>() ;
-            other.gameObject.SendMessage("ApplyPowerup", powerup);
-            Debug.Log("Powerup should be destroyed");
-            Destroy(gameObject);
-        }
+
 
     }
 }
