@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Data;
 using Mono.Data.SqliteClient;
 
-public class ScoreManager:SuperClass
+public class ScoreManager : SuperClass
 {
 	private IDbConnection _db;
 	private IDbCommand _dbcommand;
@@ -38,7 +38,8 @@ public class ScoreManager:SuperClass
 		string sql = "SELECT `Username` from `Profiles`;";
 		IDataReader reader = ExecuteQuery(sql);
 		//add items in a List collection
-		while (reader.Read()) {
+		while (reader.Read()) 
+		{
 			profiles.Add(GetProfile(reader["Username"].ToString()));
 		}
 		// return all Profiles
@@ -50,7 +51,8 @@ public class ScoreManager:SuperClass
 	{
 		string sql = "SELECT * FROM `Profiles` WHERE Username='" + username + "' LIMIT 1;";
 		IDataReader reader = ExecuteQuery(sql);
-		if (reader.Read()) {
+		if (reader.Read()) 
+		{
 			return new Profile(
 				reader["Username"].ToString(),
 				StringToList(reader["CompletedLevels"].ToString()),
@@ -154,7 +156,8 @@ public class ScoreManager:SuperClass
 	// converts string to list < int > , ie. "5,3,7" -> {5, 3, 7}
 	{
 		List < int > lst = new List < int >();
-		foreach (string i in str.Split(',')) {
+		foreach (string i in str.Split(',')) 
+		{
 			int j;
 			int.TryParse(i, out j);
 			lst.Add(j);
@@ -166,7 +169,8 @@ public class ScoreManager:SuperClass
 	// converts list < int > to string, ie. {5, 3, 7} -> "5,3,7"
 	{
 		string str = "";
-		for (int i = 0; list.Count > i; i++) {
+		for (int i = 0; list.Count > i; i++) 
+		{
 			str = str + list[i].ToString() + ",";
 		}
 		return str.TrimEnd('n');
@@ -176,7 +180,8 @@ public class ScoreManager:SuperClass
 	// converts string to dictionary<int,int>  ie. "1:5,3:2" -> {<1,5>,<3,2>}
 	{
 		Dictionary < int, int > dict = new Dictionary < int, int >();
-		foreach (string i in str.Split(',')) {
+		foreach (string i in str.Split(',')) 
+		{
 			string[] d = i.Split(':');
 			int key, val;
 			int.TryParse(d[0], out key);
@@ -190,7 +195,8 @@ public class ScoreManager:SuperClass
 	// converts Dictionary < int, int > to a string  ie. {<1,5>,<3,2>} -> "1:5,3:2"
 	{
 		string str = "";
-		foreach (KeyValuePair< int, int> entry in dict) {
+		foreach (KeyValuePair< int, int> entry in dict) 
+		{
 			str = str + entry.Key.ToString() + ":" + entry.Value.ToString() + ",";
 		}
 
