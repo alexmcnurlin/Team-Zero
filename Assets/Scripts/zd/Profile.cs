@@ -34,9 +34,12 @@ public class Profile
 	public void setLevelScore(int levelId, int score)
 	// set the score for the given levelId
 	{
-		if (this.score.ContainsKey(levelId)) {
+		if (this.score.ContainsKey(levelId)) 
+		{
 			this.score[levelId] = score;
-		} else {
+		} 
+		else 
+		{
 			this.score.Add(levelId, score);
 		}
 	}
@@ -44,9 +47,12 @@ public class Profile
 	public int GetLevelScore(int levelId)
 	// returns score for given levelId or 0 if score isin't set
 	{		
-		if (this.score.ContainsKey(levelId)) {
+		if (this.score.ContainsKey(levelId)) 
+		{
 			return this.score[levelId];
-		} else {
+		} 
+		else 
+		{
 			return 0;
 		}	
 	}
@@ -55,7 +61,8 @@ public class Profile
 	// Add level to completed levels and save to db
 	{
 		// checks to see if level already exists as completed
-		if (!this.completedLevels.Contains(levelId)) {
+		if (!this.completedLevels.Contains(levelId)) 
+		{
 			this.completedLevels.Add(levelId);
 		}
 		// save to db
@@ -67,7 +74,8 @@ public class Profile
 	// Add level to list of completed levels, and set level score
 	{
 		// checks to see if level already exists as completed
-		if (!this.completedLevels.Contains(levelId)) {
+		if (!this.completedLevels.Contains(levelId)) 
+		{
 			this.completedLevels.Add(levelId);
 		}
 		// set level score
@@ -90,7 +98,8 @@ public class Profile
 	// Add token to profile's collected tokens
 	{
 		// Checks to see if token already exists as collected
-		if (!this.tokens.Contains(token)) {
+		if (!this.tokens.Contains(token))
+		{
 			this.tokens.Add(token);
 		}
 	}
