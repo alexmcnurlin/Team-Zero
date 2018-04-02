@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4561834431626026}
   - component: {fileID: 212973317012576904}
   - component: {fileID: 58944944143575498}
-  - component: {fileID: 114880847363792480}
   - component: {fileID: 114707423057835004}
+  - component: {fileID: 114987490609224066}
   m_Layer: 0
   m_Name: SpeedPowerup
   m_TagString: Untagged
@@ -72,7 +72,7 @@ MonoBehaviour:
   id: 0
   type: 2
   length: 10
---- !u!114 &114880847363792480
+--- !u!114 &114987490609224066
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -80,14 +80,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1735608382233792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 698da0c11753e4d42a45b99537350e52, type: 3}
+  m_Script: {fileID: 11500000, guid: a9ba27b767f202d44ba8fb29e9b89be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: 0
-  itemType: 2
-  coinType: 0
-  damageGiving: 0
-  scoreManager: {fileID: 0}
+  scoreManager: {fileID: 114263311208041546, guid: b82b8689a7ba1d74d8244af319b99b8f,
+    type: 2}
+  debug: 0
+  powerup: {fileID: 0}
 --- !u!212 &212973317012576904
 SpriteRenderer:
   m_ObjectHideFlags: 1
