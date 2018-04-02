@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4696643456794696}
   - component: {fileID: 212463588771288860}
   - component: {fileID: 58441781371958524}
-  - component: {fileID: 114106893479846742}
+  - component: {fileID: 114874520697556910}
   m_Layer: 0
   m_Name: BronzeCoin
   m_TagString: Untagged
@@ -57,7 +57,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.014625013}
   serializedVersion: 2
   m_Radius: 0.19969368
---- !u!114 &114106893479846742
+--- !u!114 &114874520697556910
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -65,14 +65,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1659058150133874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 698da0c11753e4d42a45b99537350e52, type: 3}
+  m_Script: {fileID: 11500000, guid: e13985ea0a1fc5d4a8fa283c501c1e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: 0
-  itemType: 3
+  scoreManager: {fileID: 114263311208041546, guid: b82b8689a7ba1d74d8244af319b99b8f,
+    type: 2}
+  debug: 0
   coinType: 3
-  damageGiving: 0
-  scoreManager: {fileID: 0}
 --- !u!212 &212463588771288860
 SpriteRenderer:
   m_ObjectHideFlags: 1

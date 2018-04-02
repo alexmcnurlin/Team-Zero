@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4289292001957780}
   - component: {fileID: 212534784921984516}
   - component: {fileID: 58885112823064538}
-  - component: {fileID: 114560793915725878}
   - component: {fileID: 114906470356416890}
+  - component: {fileID: 114698407049991620}
   m_Layer: 0
   m_Name: InvincibilityPowerup
   m_TagString: Untagged
@@ -58,7 +58,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.38
---- !u!114 &114560793915725878
+--- !u!114 &114698407049991620
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -66,14 +66,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1154110599323352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 698da0c11753e4d42a45b99537350e52, type: 3}
+  m_Script: {fileID: 11500000, guid: a9ba27b767f202d44ba8fb29e9b89be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: 0
-  itemType: 2
-  coinType: 0
-  damageGiving: 0
-  scoreManager: {fileID: 0}
+  scoreManager: {fileID: 114263311208041546, guid: b82b8689a7ba1d74d8244af319b99b8f,
+    type: 2}
+  debug: 0
+  powerup: {fileID: 0}
 --- !u!114 &114906470356416890
 MonoBehaviour:
   m_ObjectHideFlags: 1
