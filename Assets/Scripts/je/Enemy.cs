@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-
+	[SerializeField] string floorGameObjectTag;
 	private int moneyRewardDefeatAmount;
 	private bool shouldRespawn;
 	private bool isVisibleOnScreen;
@@ -36,11 +36,19 @@ public class Enemy : Character
 		
 	}
 
+	void OnCollisionEnter2D (Collision2D other)
+	{
+		if (other.gameObject.tag != floorGameObjectTag) {
+			velocity *= -1;
+		}
+	}
+
 	public void CollideWithObject (object[] temp)
 	{
-		string type = (string)temp [0];
-		float speed = (float)temp [1];
-		velocity *= speed * 3;
+//		string type = (string)temp [0];
+//		Debug.Log (type);
+//		float speed = (float)temp [1];
+//		velocity = speed * 3 * ((speed > 0) ? 1 : -1);
 	}
 	
 	// Update is called once per frame
