@@ -11,6 +11,7 @@ TagManager:
   - ScoreManager
   - MainPlayer
   - DirtFloor
+  - ProfileManager
   layers:
   - Default
   - TransparentFX

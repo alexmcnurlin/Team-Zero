@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class NonCharacterCollisionController:MonoBehaviour
 {
-
+    //  DEPRECATED DO NOT USE
+    
     public enum TileTypes
     {
         None,
@@ -15,6 +16,7 @@ public class NonCharacterCollisionController:MonoBehaviour
         Killing,
         EndOfLevel
     }
+    
 
     public enum ItemTypes
     {
@@ -23,7 +25,7 @@ public class NonCharacterCollisionController:MonoBehaviour
         Powerup,
         Coin
     }
-
+    
     public enum CoinTypes 
     {
         None,
@@ -31,7 +33,8 @@ public class NonCharacterCollisionController:MonoBehaviour
         Silver,
         Bronze
     }
-
+    
+      
     public TileTypes tileType;
     public ItemTypes itemType;
     public CoinTypes coinType;
@@ -39,7 +42,7 @@ public class NonCharacterCollisionController:MonoBehaviour
     public int damageGiving = 0;
 
     public InGameProfileController scoreManager;
-
+    
     public Dictionary<CoinTypes, int> coinScoreValues = new Dictionary<CoinTypes, int>
     {
         {CoinTypes.Gold, 10},
@@ -48,16 +51,9 @@ public class NonCharacterCollisionController:MonoBehaviour
     };
 
 
-    // Use this for initialization
-    void Start()
+    public void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        Debug.Log("NonCharacterCollisionController has been deprecated, use InteractiveItems and its subclasses instead.");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -70,15 +66,18 @@ public class NonCharacterCollisionController:MonoBehaviour
             Debug.Log("Powerup should be destroyed");
             Destroy(gameObject);
         }
-
+        
         if(itemType == ItemTypes.Coin && other.gameObject.tag == "MainPlayer") {
 
             scoreManager.gameObject.SendMessage("AddScore", coinScoreValues[coinType]);
             Destroy(gameObject);
 
         }
+        
     }
 
+
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
 
@@ -125,4 +124,5 @@ public class NonCharacterCollisionController:MonoBehaviour
 
 
     }
+    
 }
