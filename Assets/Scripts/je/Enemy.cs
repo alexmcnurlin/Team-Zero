@@ -39,6 +39,12 @@ public class Enemy : Character
 	void OnCollisionEnter2D (Collision2D other)
 	{
 		if (other.gameObject.tag != floorGameObjectTag) {
+			// if (other.gameObject.tag == "MainPlayer") {
+			// Player player = (Player)GameObject.FindWithTag ("MainPlayer");
+			// if (!player.IS_INVINCIBLE) {
+			// 	player.applyDamage(Player.MAX_HEALTH / 4);
+			// }
+			// }
 			velocity *= -1;
 		}
 	}
