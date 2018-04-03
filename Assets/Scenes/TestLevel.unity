@@ -11613,7 +11613,7 @@ GameObject:
   - component: {fileID: 129178167}
   m_Layer: 0
   m_Name: DirtFloor
-  m_TagString: Untagged
+  m_TagString: DirtFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13319,7 +13319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &840082765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22186,7 +22186,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1784076405}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35, y: 4, z: 0}
+  m_LocalPosition: {x: 33.97, y: -6.71, z: 0}
   m_LocalScale: {x: 0.22075279, y: 0.22075279, z: 0.22075279}
   m_Children: []
   m_Father: {fileID: 0}
@@ -22203,6 +22203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31a32182116a4f7b8ddf911e38a1831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorGameObjectTag: DirtFloor
 --- !u!50 &1784076408
 Rigidbody2D:
   serializedVersion: 4
@@ -22222,7 +22223,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1784076409
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22487,7 +22488,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2095621973}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.5, y: 5, z: 0}
+  m_LocalPosition: {x: 29.49, y: 1.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -22504,6 +22505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351238f9e13e34c3a8b4f8d604b86f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcRole: 0
 --- !u!50 &2095621976
 Rigidbody2D:
   serializedVersion: 4
@@ -22523,7 +22525,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!61 &2095621977
 BoxCollider2D:
   m_ObjectHideFlags: 0
