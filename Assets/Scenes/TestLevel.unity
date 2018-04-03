@@ -13315,7 +13315,7 @@ GameObject:
   - component: {fileID: 840082765}
   m_Layer: 0
   m_Name: TestingObject
-  m_TagString: ProfileManager
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -13674,6 +13674,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1461277071965014, guid: b82b8689a7ba1d74d8244af319b99b8f, type: 2}
       propertyPath: m_Name
+      value: ProfileManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461277071965014, guid: b82b8689a7ba1d74d8244af319b99b8f, type: 2}
+      propertyPath: m_TagString
       value: ProfileManager
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -22314,6 +22318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScore: 0
+  profileName: 
 --- !u!4 &1948918927 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4691604907524516, guid: 1100249982317c949b9c8900266fe817,
