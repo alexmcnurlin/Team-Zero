@@ -10,6 +10,7 @@ using System.Collections.Generic;
 // for sqlite dlls
 using System.Data;
 using Mono.Data.SqliteClient;
+using UnityEngine;
 
 public class ScoreManager : SuperClass
 {
@@ -49,10 +50,11 @@ public class ScoreManager : SuperClass
 	public Profile GetProfile(string username)
 	// return a profile from database
 	{
-		string sql = "SELECT * FROM `Profiles` WHERE Username='" + username + "' LIMIT 1;";
+		string sql = "SELECT * FROM `Profiles` WHERE `Username`='" + username + "' LIMIT 1;";
 		IDataReader reader = ExecuteQuery(sql);
 		if (reader.Read()) 
 		{
+
 			return new Profile(
 				reader["Username"].ToString(),
 				StringToList(reader["CompletedLevels"].ToString()),
@@ -133,7 +135,7 @@ public class ScoreManager : SuperClass
 	public void Save(Profile player)
 	// writes profile to db
 	{
-		string sql = "INSERT OR REPLACE INTO `Profiles` (`Username`, `CompletedLevels`, `Tokens`, `Score`) VALUES ( '" + player.username.ToString() + "', '" + ListToString(player.completedLevels) + "', '" + ListToString(player.tokens) + "', '" + DictToString(player.score) + "');";
+		string sql = "INSERT OR REPLACE INTO `Profiles` (`Id`, `Username`, `CompletedLevels`, `Tokens`, `Score`) VALUES ( (SELECT `Id` FROM `Profiles` WHERE `Username`='" + player.username.ToString() + "' LIMIT 1), '" + player.username.ToString() + "', '" + ListToString(player.completedLevels) + "', '" + ListToString(player.tokens) + "', '" + DictToString(player.score) + "');";
 		ExecuteQuery(sql);
 		SendToServer(player);
 	}
@@ -212,7 +214,7 @@ public class ScoreManager : SuperClass
 	private void CreateDB()
 	// see if db exists, create file if it doesn't
 	{
-		string sql = "CREATE TABLE IF NOT EXISTS `Profiles` (`Username` TEXT NOT NULL, `CompletedLevels` TEXT, `Tokens` TEXT, `Score` TEXT );";
+		string sql = "CREATE TABLE IF NOT EXISTS `Profiles` (`Id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `Username` TEXT NOT NULL, `CompletedLevels` TEXT NOT NULL, `Tokens` TEXT NOT NULL, `Score` TEXT NOT NULL);";
 		ExecuteQuery(sql);
 	}
 

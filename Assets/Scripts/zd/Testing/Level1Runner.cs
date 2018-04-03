@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.TestTools;
-using NUnit.Framework;
 using UnityEngine;
 
 public class Level1Runner : MonoBehaviour 
