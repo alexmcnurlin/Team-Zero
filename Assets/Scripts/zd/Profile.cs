@@ -3,10 +3,11 @@
 */
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Profile
 {
-
+	private int id;
 	public string username;
 	public List < int > completedLevels;
 	public List < int > tokens;
