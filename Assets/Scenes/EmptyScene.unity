@@ -158,7 +158,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileType: 2
   itemType: 0
+  coinType: 0
   damageGiving: 0
+  scoreManager: {fileID: 0}
 --- !u!19719996 &152018669
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -433,7 +435,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileType: 1
   itemType: 0
+  coinType: 0
   damageGiving: 0
+  scoreManager: {fileID: 0}
 --- !u!19719996 &462051574
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -841,7 +845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &979993901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,8 +857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b49a2e0346fda4fa42474e8d5a735a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pancake: {fileID: 1586896545}
-  shouldPass: 0
 --- !u!4 &979993902
 Transform:
   m_ObjectHideFlags: 0
@@ -1090,7 +1092,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileType: 1
   itemType: 0
+  coinType: 0
   damageGiving: 0
+  scoreManager: {fileID: 0}
 --- !u!1 &1094712621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1140,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileType: 3
   itemType: 0
+  coinType: 0
   damageGiving: 0
+  scoreManager: {fileID: 0}
 --- !u!19719996 &1094712624
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1368,7 +1374,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileType: 0
   itemType: 0
+  coinType: 0
   damageGiving: 0
+  scoreManager: {fileID: 0}
 --- !u!19719996 &1122739819
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1566,8 +1574,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b279ecb2809e5f549a47eeb14e9e4291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 0}
-  source: {fileID: 0}
+  aSource: {fileID: 0}
+  bgMusic: {fileID: 0}
+  jumpClip: {fileID: 0}
+  damageClip: {fileID: 0}
+  pUpClip: {fileID: 0}
+  midjump: 0
+  falling: 0
 --- !u!82 &1332290825
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1748,7 +1761,7 @@ GameObject:
   - component: {fileID: 1586896546}
   m_Layer: 0
   m_Name: SadPancakeBody
-  m_TagString: Untagged
+  m_TagString: MainPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1825,7 +1838,7 @@ MonoBehaviour:
   counter: 0
   localSpeed: {x: 10, y: 0}
   charAction: {x: 0, y: 0}
-  midjump: no
+  midJump: no
 --- !u!61 &1586896546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1916,7 +1929,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileType: 4
   itemType: 0
+  coinType: 0
   damageGiving: 0
+  scoreManager: {fileID: 0}
 --- !u!19719996 &1643996719
 TilemapCollider2D:
   m_ObjectHideFlags: 0

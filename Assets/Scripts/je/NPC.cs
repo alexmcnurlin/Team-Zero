@@ -4,44 +4,35 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+	[SerializeField] Dialog.Role npcRole;
+	Dialog d;
+	float velocity;
+	float speed;
 
-	private string[] dialogue;
-	private float velocity = 1;
-
-	// Use this for initialization
-	void Start()
+	void Start ()
 	{
-		
+		d = JsonUtility.FromJson<Dialog> (Dialog.dialogData [npcRole]);
+		//		d.dialogType = Dialog.DialogType.Quest;
+		//			Debug.Log (string.Join (" ", d.casualChat));
 	}
 
-	public void Move()
+	void OnCollisionEnter2D (Collision2D other)
 	{
-		Vector2 position = transform.position;
-		float translation = Time.deltaTime * velocity;
-		position.x += translation;
-		transform.position = position;
-	}
-	
-	// Update is called once per frame
-	void Update()
-	{
-		Move();
-	}
-
-	void Chat()
-	{
-
+		if (other.gameObject.tag == "MainPlayer") {
+			Debug.Log ("PLAYER COLLIDED W ENEMY");		
+//			Debug.Log (string.Join (" ", d.casualChat));
+			Debug.Log ("CHAT ON INITIAL QUEST ASSIGNMENT: " + string.Join (" ", d.assignChat));
+			Debug.Log ("CHAT AFTER ASSIGNING: " + string.Join (" ", d.postAssignmentChat));
+			Debug.Log ("CHAT AFTER COMPLETING QUEST: " + string.Join (" ", d.completionChat));
+			Debug.Log ("FINAL CHAT: " + string.Join (" ", d.postCompletionChat));
+			Debug.Log ("REWARD FOR QUEST COMPLETION: " + d.rewardAmount);
+		}
 	}
 
-	public void CollideWithObject(object[] temp)
+	public void CollideWithObject (object[] temp)
 	{
-		string type = (string)temp[0];
-		float speed = (float)temp[1];
+		string type = (string)temp [0];
+		float speed = (float)temp [1];
 		velocity *= speed * 2;
-	}
-
-	void AssignQuest(/*Quest quest*/)
-	{
-
 	}
 }

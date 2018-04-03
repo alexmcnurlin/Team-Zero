@@ -12,17 +12,17 @@ public class Enemy : Character
 	//	private PowerUp[] powerUpItemDrop;
 	private int damageAmount;
 
-	public Enemy()
+	public Enemy ()
 	{
 		velocity = 2;
 	}
 
-	protected override void OnCollision()
+	protected override void OnCollision ()
 	{
 
 	}
 
-	public void Move()
+	public void Move ()
 	{
 		Vector2 position = transform.position;
 		float translation = Time.deltaTime * velocity;
@@ -31,35 +31,35 @@ public class Enemy : Character
 	}
 
 	// Use this for initialization
-	void Start()
+	void Start ()
 	{
 		
 	}
 
-	public void CollideWithObject(object[] temp)
+	public void CollideWithObject (object[] temp)
 	{
-		string type = (string)temp[0];
-		float speed = (float)temp[1];
+		string type = (string)temp [0];
+		float speed = (float)temp [1];
 		velocity *= speed * 3;
 	}
 	
 	// Update is called once per frame
-	void Update()
+	void Update ()
 	{
-		Move();
+		Move ();
 	}
 
-	private bool IsEnemyVisibleOnScreen()
+	private bool IsEnemyVisibleOnScreen ()
 	{
 		return true;
 	}
 
-	public void Attack()
+	public void Attack ()
 	{
 
 	}
 
-	public void Reward()
+	public void Reward ()
 	{ 
 
 	}
