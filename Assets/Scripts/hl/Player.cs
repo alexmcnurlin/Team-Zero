@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// Author: Hayden Lepla
+// Player.cs
+
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,13 +14,20 @@ public class Player : Character
     public Vector2 charAction;
     public string midJump = "no";
     private Powerup playerPowerup;
-
+    public const float maxHealth = 100;
+    public float health;
+    public static bool isInvicible = false;
+    public static bool isDoubleJump = false;
+    public static bool isFast = false;
+    public float timeLeft;
+    
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        health = maxHealth;
     }
-
+    // Not used for now
     private void FixedUpdate()
     {
 
@@ -58,27 +69,62 @@ public class Player : Character
         if (GetComponent<Rigidbody2D>().velocity.y == 0)
             midJump = "no";
 
+        TimeSpan notime = new TimeSpan(0);
+        if (playerPowerup.TimeLeft().CompareTo(notime) < 0)
+        {
+            Debug.Log("Powerup has expired");
+
+            if (playerPowerup.type == Modifier.INVINCIBLE)
+            {
+                isInvicible = false;
+            }
+
+            else if(playerPowerup.type == Modifier.JUMPHEIGHT)
+            {
+                isDoubleJump = false;
+
+            }
+            else if(playerPowerup.type == Modifier.SPEED)
+            {
+                isFast = false;
+            }
+        }
     }
 
     public void ApplyPowerup(Powerup powerup)
     {
+        playerPowerup = powerup;
         Debug.Log("Accepted" + powerup.type + ".");
         powerup.ActivatePowerup();
 
-        /* ToDo, differentiate various powerups
-
         if (playerPowerup.type == Modifier.INVINCIBLE)
         {
-            // make invincible
+            isInvicible = true;
+            // Implement damage to enmeies and player later
         }
 
         else if(playerPowerup.type == Modifier.JUMPHEIGHT)
-        {}
+        {
+            isDoubleJump = true;
+            Jump(); 
+        }
 
         else if(playerPowerup.type == Modifier.SPEED)
-        {}
-        */
+        {
+            isFast = true;
+            // Temp double player speed
+            Movement(20, 0);
+        }
+        
     }    
+
+    public void ApplyDamage(float damage)
+    {
+        if(!isInvicible)
+        {
+            health -= damage;
+        }
+    }
 
     void CollideWithObject(object tmp)
     {
