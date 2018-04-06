@@ -29,7 +29,7 @@ public class AudioManagement : MonoBehaviour
 	{
         aSource = GetComponent<AudioSource>();
 
-        //bgMusic = (AudioClip)Resources.Load<AudioClip>("Sound/Allstar");
+        bgMusic = (AudioClip)Resources.Load<AudioClip>("Sound/Allstar");
 
         jumpClip = (AudioClip)Resources.Load<AudioClip>("Sound/Jump");
         damageClip = (AudioClip)Resources.Load<AudioClip>("Sound/Damage");
