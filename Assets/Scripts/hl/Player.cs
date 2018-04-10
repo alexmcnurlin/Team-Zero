@@ -10,11 +10,13 @@ public class Player : Character
     public Vector2 charAction;
     public string midJump = "no";
     private Powerup playerPowerup;
+    public AudioManagement aSource;
 
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        aSource = GameObject.Find("Audio Source").GetComponent<AudioManagement>();
     }
 
     private void FixedUpdate()
@@ -34,6 +36,7 @@ public class Player : Character
     public void Jump()
     {
         rb2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
+        aSource.PlayFx(AudioManagement.SoundType.JUMP);
     }
 
     // Update is called once per frame
