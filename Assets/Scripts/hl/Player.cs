@@ -20,11 +20,13 @@ public class Player : Character
     public static bool isDoubleJump = false;
     public static bool isFast = false;
     public float timeLeft;
+    public AudioManagement aSource;
     
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        aSource = GameObject.Find("Audio Source").GetComponent<AudioManagement>();
         health = maxHealth;
     }
     // Not used for now
@@ -45,6 +47,7 @@ public class Player : Character
     public void Jump()
     {
         rb2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
+        aSource.PlayFx(AudioManagement.SoundType.JUMP);
     }
 
     // Update is called once per frame
