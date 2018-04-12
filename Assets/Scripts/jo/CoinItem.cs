@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CoinItem : InteractiveItem {
 
+    public static AudioManagement aSource;
     public CoinTypes coinType;
 
     public enum CoinTypes {
@@ -20,11 +21,18 @@ public class CoinItem : InteractiveItem {
         {CoinTypes.Bronze, 1}
     };
 
+    public override void Start()
+    {
+        base.Start();
+        aSource = GameObject.Find("Audio Source").GetComponent<AudioManagement>();
+    }
+
     public override void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "MainPlayer") {
 
             profileManager.gameObject.SendMessage("AddToScore", coinScoreValues[coinType]);
+            aSource.PlayFx(AudioManagement.SoundType.COIN);
             Destroy(gameObject);
 
         }
