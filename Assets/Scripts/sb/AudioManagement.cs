@@ -10,6 +10,7 @@ public class AudioManagement : MonoBehaviour
 		DAMAGE,
 		JUMP,
         POWERUP,
+        NPC,
 		BG_MUSIC
 	}
 
@@ -21,51 +22,29 @@ public class AudioManagement : MonoBehaviour
     public AudioClip jumpClip;
     public AudioClip damageClip;
     public AudioClip pUpClip;
-
-    public bool midjump = false;
-    public bool falling = false;
+    public AudioClip NPCClip;
 
     public void Start()
 	{
         aSource = GetComponent<AudioSource>();
 
-        //bgMusic = (AudioClip)Resources.Load<AudioClip>("Sound/Allstar");
+        bgMusic = (AudioClip)Resources.Load<AudioClip>("Sound/Allstar");
 
         jumpClip = (AudioClip)Resources.Load<AudioClip>("Sound/Jump");
         damageClip = (AudioClip)Resources.Load<AudioClip>("Sound/Damage");
         pUpClip = (AudioClip)Resources.Load<AudioClip>("Sound/PowerUp");
+        NPCClip = (AudioClip)Resources.Load<AudioClip>("Sound/NPC");
 
         aSource.clip = jumpClip;
 
         aSource.PlayOneShot(bgMusic);
 
-        pancake = GameObject.Find("SadPancakeBody").GetComponent<Player>();
     }
 
     public void Update()
     {
-
-
-        if (pancake.GetComponent<Rigidbody2D>().velocity.y == 0)
-        {
-            if (falling)
-            {
-                PlayFx(SoundType.DAMAGE);
-            }
-
-            falling = false;
-            midjump = false;
-        }
-
-        if (pancake.GetComponent<Rigidbody2D>().velocity.y > 3 && !midjump )
-        {
-            PlayFx(SoundType.JUMP);
-            midjump = true;
-        }
-        if (pancake.GetComponent<Rigidbody2D>().velocity.y < -1 && !midjump)
-        {
-            falling = true;
-        }
+        if (Input.GetKeyDown("u"))
+            PlayFx(SoundType.NPC);
     }
 
     public int PlayMusic(SoundType music)
@@ -86,6 +65,9 @@ public class AudioManagement : MonoBehaviour
                 break;
             case SoundType.POWERUP:
                 aSource.PlayOneShot(pUpClip);
+                break;
+            case SoundType.NPC:
+                aSource.PlayOneShot(NPCClip);
                 break;
         }
 	}
