@@ -19,6 +19,7 @@ public class Player : Character
     public static bool isInvicible = false;
     public static bool isDoubleJump = false;
     public static bool isFast = false;
+    public bool hasPowerup = false;
     public float timeLeft;
     public AudioManagement aSource;
     
@@ -73,23 +74,27 @@ public class Player : Character
             midJump = "no";
 
         TimeSpan notime = new TimeSpan(0);
-        if (playerPowerup.TimeLeft().CompareTo(notime) < 0)
+        if(hasPowerup) 
         {
-            Debug.Log("Powerup has expired");
-
-            if (playerPowerup.type == Modifier.INVINCIBLE)
+            if (playerPowerup.TimeLeft().CompareTo(notime) < 0)
             {
-                isInvicible = false;
-            }
+                Debug.Log("Powerup has expired");
+                hasPowerup = false;
 
-            else if(playerPowerup.type == Modifier.JUMPHEIGHT)
-            {
-                isDoubleJump = false;
+                if (playerPowerup.type == Modifier.INVINCIBLE)
+                {
+                    isInvicible = false;
+                }
 
-            }
-            else if(playerPowerup.type == Modifier.SPEED)
-            {
-                isFast = false;
+                else if(playerPowerup.type == Modifier.JUMPHEIGHT)
+                {
+                    isDoubleJump = false;
+
+                }
+                else if(playerPowerup.type == Modifier.SPEED)
+                {
+                    isFast = false;
+                }
             }
         }
     }
