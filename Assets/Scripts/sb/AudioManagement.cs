@@ -12,10 +12,13 @@ public class AudioManagement : MonoBehaviour
         POWERUP,
         NPC,
         BG_MUSIC,
-        COIN
+        COIN,
+        STOP,
+        INVINCIBILITY
     }
 
     public AudioSource aSource;
+    public AudioSource bgSource;
 
     public AudioClip allstar;
     public AudioClip spaceCave;
@@ -26,12 +29,12 @@ public class AudioManagement : MonoBehaviour
     public AudioClip pUpClip;
     public AudioClip NPCClip;
     public AudioClip coinClip;
+    public AudioClip invincibility;
 
     public int bgMusicCounter = 0;
 
     public void Start()
     {
-        aSource = GetComponent<AudioSource>();
 
         allstar = (AudioClip)Resources.Load<AudioClip>("Sound/Allstar");
         spaceCave = (AudioClip)Resources.Load<AudioClip>("Sound/SpaceCave");
@@ -42,8 +45,9 @@ public class AudioManagement : MonoBehaviour
         pUpClip = (AudioClip)Resources.Load<AudioClip>("Sound/PowerUp");
         NPCClip = (AudioClip)Resources.Load<AudioClip>("Sound/NPC");
         coinClip = (AudioClip)Resources.Load<AudioClip>("Sound/Coin");
+        invincibility = (AudioClip)Resources.Load<AudioClip>("Sound/Invincibility");
 
-        aSource.clip = spaceCave;
+        bgSource.clip = spaceCave;
         PlayMusic(SoundType.BG_MUSIC);
 
     }
@@ -51,7 +55,7 @@ public class AudioManagement : MonoBehaviour
     public void Update()
     {
         if (Input.GetKeyDown("u"))
-            PlayFx(SoundType.NPC);
+            PlayFx(SoundType.INVINCIBILITY);
         if (Input.GetKeyDown("m"))
         {
             bgMusicCounter++;
@@ -60,7 +64,7 @@ public class AudioManagement : MonoBehaviour
             PlayMusic(SoundType.BG_MUSIC);
         }
         if (Input.GetKeyDown("n"))
-            aSource.Stop();
+            bgSource.Stop();
     }
 
     public void PlayMusic(SoundType music)
@@ -68,16 +72,16 @@ public class AudioManagement : MonoBehaviour
         switch (bgMusicCounter)
         {
             case 0:
-                aSource.clip = spaceCave;
-                aSource.Play();
+                bgSource.clip = spaceCave;
+                bgSource.Play();
                 break;
             case 1:
-                aSource.clip = lake;
-                aSource.Play();
+                bgSource.clip = lake;
+                bgSource.Play();
                 break;
             case 2:
-                aSource.clip = allstar;
-                aSource.Play();
+                bgSource.clip = allstar;
+                bgSource.Play();
                 break;
         }
 	}
@@ -101,7 +105,14 @@ public class AudioManagement : MonoBehaviour
             case SoundType.COIN:
                 aSource.PlayOneShot(coinClip);
                 break;
-
+            case SoundType.INVINCIBILITY:
+                bgSource.Pause();
+                aSource.PlayOneShot(invincibility);
+                break;
+            case SoundType.STOP:
+                aSource.Stop();
+                bgSource.UnPause();
+                break;
         }
 	}
 }
