@@ -2,6 +2,8 @@
 	Author: Zane Durkin <durk7832@vandals.uidaho.edu>
 */
 
+using UnityEngine;
+
 using System;
 using System.Collections.Generic;
 
@@ -10,8 +12,6 @@ using System.Collections.Generic;
 // for sqlite dlls
 using System.Data;
 using Mono.Data.SqliteClient;
-using UnityEngine;
-
 public class ScoreManager : SuperClass
 {
 	private IDbConnection _db;
