@@ -11,7 +11,8 @@ public class AudioManagement : MonoBehaviour
 		JUMP,
         POWERUP,
         NPC,
-		BG_MUSIC
+		BG_MUSIC,
+        COIN
 	}
 
     Player pancake;
@@ -23,6 +24,7 @@ public class AudioManagement : MonoBehaviour
     public AudioClip damageClip;
     public AudioClip pUpClip;
     public AudioClip NPCClip;
+    public AudioClip coinClip;
 
     public void Start()
 	{
@@ -34,10 +36,11 @@ public class AudioManagement : MonoBehaviour
         damageClip = (AudioClip)Resources.Load<AudioClip>("Sound/Damage");
         pUpClip = (AudioClip)Resources.Load<AudioClip>("Sound/PowerUp");
         NPCClip = (AudioClip)Resources.Load<AudioClip>("Sound/NPC");
+        coinClip = (AudioClip)Resources.Load<AudioClip>("Sound/Coin");
 
         aSource.clip = jumpClip;
 
-        aSource.PlayOneShot(bgMusic);
+        //aSource.PlayOneShot(bgMusic);
 
     }
 
@@ -69,6 +72,10 @@ public class AudioManagement : MonoBehaviour
             case SoundType.NPC:
                 aSource.PlayOneShot(NPCClip);
                 break;
+            case SoundType.COIN:
+                aSource.PlayOneShot(coinClip);
+                break;
+
         }
 	}
 }
