@@ -72,27 +72,24 @@ public class Player : Character
         if (GetComponent<Rigidbody2D>().velocity.y == 0)
             midJump = "no";
 
-        if (playerPowerup != null)
+        TimeSpan notime = new TimeSpan(0);
+        if (playerPowerup.TimeLeft().CompareTo(notime) < 0)
         {
-            TimeSpan notime = new TimeSpan(0);
-            if (playerPowerup.TimeLeft().CompareTo(notime) < 0)
+            Debug.Log("Powerup has expired");
+
+            if (playerPowerup.type == Modifier.INVINCIBLE)
             {
-                Debug.Log("Powerup has expired");
+                isInvicible = false;
+            }
 
-                if (playerPowerup.type == Modifier.INVINCIBLE)
-                {
-                    isInvicible = false;
-                }
+            else if(playerPowerup.type == Modifier.JUMPHEIGHT)
+            {
+                isDoubleJump = false;
 
-                else if (playerPowerup.type == Modifier.JUMPHEIGHT)
-                {
-                    isDoubleJump = false;
-
-                }
-                else if (playerPowerup.type == Modifier.SPEED)
-                {
-                    isFast = false;
-                }
+            }
+            else if(playerPowerup.type == Modifier.SPEED)
+            {
+                isFast = false;
             }
         }
     }
