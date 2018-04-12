@@ -27,7 +27,7 @@ public class Player : Character
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        aSource = GameObject.Find("Audio Source").GetComponent<AudioManagement>();
+        aSource = GameObject.Find("AudioManagement").GetComponent<AudioManagement>();
         health = maxHealth;
     }
     // Not used for now
