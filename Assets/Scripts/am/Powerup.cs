@@ -24,6 +24,8 @@ public class Powerup : MonoBehaviour
         time = DateTime.Now;
         Debug.Log("Activating powerup");
         time = time.AddSeconds(length);
+        PowerupSoundManager soundManager = PowerupSoundManager.getInstance();
+        soundManager.PlayAudio(type);
     }
 
     public TimeSpan TimeLeft()
