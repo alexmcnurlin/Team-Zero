@@ -5,32 +5,37 @@ using System.Collections.Generic;
 public class AudioManagement : MonoBehaviour
 {
 
-	public enum SoundType
-	{
-		DAMAGE,
-		JUMP,
+    public enum SoundType
+    {
+        DAMAGE,
+        JUMP,
         POWERUP,
         NPC,
-		BG_MUSIC,
+        BG_MUSIC,
         COIN
-	}
-
-    Player pancake;
+    }
 
     public AudioSource aSource;
 
-    public AudioClip bgMusic;
+    public AudioClip allstar;
+    public AudioClip spaceCave;
+    public AudioClip lake;
+
     public AudioClip jumpClip;
     public AudioClip damageClip;
     public AudioClip pUpClip;
     public AudioClip NPCClip;
     public AudioClip coinClip;
 
+    public int bgMusicCounter = 0;
+
     public void Start()
-	{
+    {
         aSource = GetComponent<AudioSource>();
 
-        bgMusic = (AudioClip)Resources.Load<AudioClip>("Sound/Allstar");
+        allstar = (AudioClip)Resources.Load<AudioClip>("Sound/Allstar");
+        spaceCave = (AudioClip)Resources.Load<AudioClip>("Sound/SpaceCave");
+        lake = (AudioClip)Resources.Load<AudioClip>("Sound/Path to Lake Land");
 
         jumpClip = (AudioClip)Resources.Load<AudioClip>("Sound/Jump");
         damageClip = (AudioClip)Resources.Load<AudioClip>("Sound/Damage");
@@ -38,9 +43,8 @@ public class AudioManagement : MonoBehaviour
         NPCClip = (AudioClip)Resources.Load<AudioClip>("Sound/NPC");
         coinClip = (AudioClip)Resources.Load<AudioClip>("Sound/Coin");
 
-        aSource.clip = jumpClip;
-
-        //aSource.PlayOneShot(bgMusic);
+        aSource.clip = spaceCave;
+        PlayMusic(SoundType.BG_MUSIC);
 
     }
 
@@ -48,12 +52,34 @@ public class AudioManagement : MonoBehaviour
     {
         if (Input.GetKeyDown("u"))
             PlayFx(SoundType.NPC);
+        if (Input.GetKeyDown("m"))
+        {
+            bgMusicCounter++;
+            if (bgMusicCounter == 3)
+                bgMusicCounter = 0;
+            PlayMusic(SoundType.BG_MUSIC);
+        }
+        if (Input.GetKeyDown("n"))
+            aSource.Stop();
     }
 
-    public int PlayMusic(SoundType music)
+    public void PlayMusic(SoundType music)
 	{
-        aSource.PlayOneShot(bgMusic);
-        return 1;
+        switch (bgMusicCounter)
+        {
+            case 0:
+                aSource.clip = spaceCave;
+                aSource.Play();
+                break;
+            case 1:
+                aSource.clip = lake;
+                aSource.Play();
+                break;
+            case 2:
+                aSource.clip = allstar;
+                aSource.Play();
+                break;
+        }
 	}
 
 	public void PlayFx(SoundType fx)
