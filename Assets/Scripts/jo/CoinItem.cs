@@ -24,7 +24,7 @@ public class CoinItem : InteractiveItem {
     public override void Start()
     {
         base.Start();
-        aSource = GameObject.Find("Audio Source").GetComponent<AudioManagement>();
+        aSource = GameObject.Find("AudioManagement").GetComponent<AudioManagement>();
     }
 
     public override void OnTriggerEnter2D(Collider2D other)
