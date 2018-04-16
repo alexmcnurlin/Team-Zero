@@ -74,8 +74,9 @@ public class TestLevelRunner : MonoBehaviour
 			Debug.Log ("Jumping into ditch");
 			yield return this.tc.MoveRight (4);
 			yield return this.tc.Wait (3);
+            Debug.Log("Current x: " + this.pancake.transform.position.x);
 
-			if (this.pancake.transform.position.x < 40)
+			if (this.pancake.transform.position.x > 40)
 			{
 				Debug.Log ("Test Passed");
 			} 
