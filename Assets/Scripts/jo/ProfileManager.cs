@@ -19,7 +19,7 @@ public class ProfileManager : MonoBehaviour {
 
     public void CollectedToken(int tokenID)
     {
-
+        Debug.Log("WOWEE GOT TOKEN: " + tokenID);
     }
 
     public void LoadProfileData(string profileName)
@@ -30,5 +30,10 @@ public class ProfileManager : MonoBehaviour {
     public void SaveProfileData()
     {
 
+    }
+
+    public int GetScore()
+    {
+        return currentScore;
     }
 }

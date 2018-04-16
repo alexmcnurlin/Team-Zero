@@ -12,6 +12,9 @@ TagManager:
   - MainPlayer
   - DirtFloor
   - ProfileManager
+  - LevelSelectController
+  - AudioManagement
+  - UIManager
   layers:
   - Default
   - TransparentFX
