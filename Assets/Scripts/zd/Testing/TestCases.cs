@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -82,8 +82,8 @@ public class TestCases
 				Debug.Log ("Move Left Timeout");
 				break;
 			}
-			yield return this.Move (- force, 0.0f);
-			yield return this.Wait (0.05f);
+            yield return this.Move(-force, 0.0f);
+            yield return this.Wait (0.05f);
 		}
 	}
 
@@ -101,7 +101,7 @@ public class TestCases
 	public IEnumerator MoveRightTillX(float x, float force = 10.0f, double timeout = 10.0)
 	/* Moves Player Right until it reaches the given x value */
 	{
-		//Debug.Log("Moving Right");
+		//Debug.Log("Moving R ht");
 		double end_time = Time.realtimeSinceStartup + timeout; // 1.0 = 1 second
 		// run till x is reached, or timeout is reached
 		while (pancake.transform.position.x < x) 
@@ -121,7 +121,7 @@ public class TestCases
 	{
 		//Debug.Log ("Jumping");
 		this.pancake.Jump();
-		yield return true;
+		yield return true; 
 	}
 
 

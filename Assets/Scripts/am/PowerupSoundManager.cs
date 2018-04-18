@@ -17,7 +17,7 @@ public class PowerupSoundManager
         if (instance == null)
         {
             instance = new PowerupSoundManager();
-            aSource = GameObject.Find("Audio Source").GetComponent<AudioManagement>();
+            aSource = GameObject.Find("AudioManagement").GetComponent<AudioManagement>();
         }
         return instance;
 	}
