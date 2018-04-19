@@ -13133,7 +13133,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4307947111754608, guid: 8a631b15fe63fdf41a76643c7be6e1f3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 61.5
+      value: 58.45
       objectReference: {fileID: 0}
     - target: {fileID: 4307947111754608, guid: 8a631b15fe63fdf41a76643c7be6e1f3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -13389,7 +13389,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &840082765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13402,7 +13402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pancake: {fileID: 1952697955}
-  shouldPass: 0
+  shouldPass: 1
 --- !u!4 &840082766
 Transform:
   m_ObjectHideFlags: 0
