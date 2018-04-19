@@ -5,6 +5,8 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEngine.Windows;
 
 // include sql dependencies
 // thanks https://forum.unity.com/threads/tutorial-how-to-integrate-sqlite-in-c.192282/
@@ -13,7 +15,8 @@ using System.Data;
 using Mono.Data.SqliteClient;
 public class ScoreManager : SuperClass
 {
-	private IDbConnection _db;
+    private Process process;
+    private IDbConnection _db;
 	private IDbCommand _dbcommand;
 	private IDataReader _dbreader;
 
@@ -150,16 +153,26 @@ public class ScoreManager : SuperClass
 	private void SendToServer(Profile player)
 	// Send player scores to server
 	{
+        /*
 		// Run client command
 		System.Diagnostics.Process process = new System.Diagnostics.Process();
 		System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
 		startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
 		startInfo.FileName = "cmd.exe";
 		Debug.Log ("User Logging score: " + player.GetTotalScore ().ToString ());
-		startInfo.Arguments = "/C hssclient 52.160.46.238 2 \""+player.username.ToString()+"\" \""+player.GetTotalScore().ToString()+"\" ";
-		process.StartInfo = startInfo;
-		process.Start();
-	}
+        //startInfo.Arguments = "/C hssclient 52.160.46.238 2 \""+player.username.ToString()+"\" \""+player.GetTotalScore().ToString()+"\" ";
+        startInfo.Arguments = Application.dataPath + "/Scripts/zd/hssclient.exe 52.160.46.238 2 \"" + player.username.ToString() + "\" \"" + player.GetTotalScore().ToString() + "\" ";
+        process.StartInfo = startInfo;
+        process.Start();
+        //Debug.Log(File.exists(Application.dataPath + "/Test.txt"));
+//        Debug.Log(process.Start().ToString());
+*/
+        process = new Process();
+        process.StartInfo.FileName = Application.dataPath + "\\Scripts\\zd\\hssclient.exe";
+        process.StartInfo.Arguments = " 52.160.46.238 2 " + player.username.ToString() + " " + player.GetTotalScore().ToString();
+        UnityEngine.Debug.Log(process.Start());
+
+    }
 
 	private List < int > StringToList(string str)
 	// converts string to list < int > , ie. "5,3,7" -> {5, 3, 7}
