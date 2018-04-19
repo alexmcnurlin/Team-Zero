@@ -30,6 +30,7 @@ public class CoinItem : InteractiveItem {
         if(other.gameObject.tag == "MainPlayer") {
 
             profileManager.gameObject.SendMessage("AddToScore", coinScoreValues[coinType]);
+            uiController.gameObject.SendMessage("AddToScore", coinScoreValues[coinType]);
             aSource.PlayFx(AudioManagement.SoundType.COIN);
             Destroy(gameObject);
 

@@ -25,9 +25,6 @@ public class ProfileManager : MonoBehaviour {
 
     public void CollectedToken(int tokenID)
     {
-<<<<<<< HEAD
-        Debug.Log("WOWEE GOT TOKEN: " + tokenID);
-=======
         sc.SetTokenCollected(p, tokenID);
         Debug.Log("Collected Token: " + tokenID);
     }
@@ -36,7 +33,6 @@ public class ProfileManager : MonoBehaviour {
     {
         sc.MarkLevelCompleted(p, levelID, currentScore);
         SaveProfileData();
->>>>>>> master
     }
 
     public void LoadProfileData(string profileName)

@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1040616770551528}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.59, y: 0.29, z: -0.03515625}
+  m_LocalPosition: {x: 23.14, y: -3.01, z: -0.03515625}
   m_LocalScale: {x: 2.30146, y: 2.30146, z: 2.30146}
   m_Children: []
   m_Father: {fileID: 0}
@@ -65,11 +65,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1040616770551528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50dd0621ed5de484e881e74b0bbdef2f, type: 3}
+  m_Script: {fileID: 11500000, guid: eac82fc1f4f2df8409100ae8a425fd2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  tokenID: 0
+  tokenID: 3
 --- !u!212 &212267506137839576
 SpriteRenderer:
   m_ObjectHideFlags: 1

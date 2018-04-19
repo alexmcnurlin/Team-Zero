@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
 
-    public Text scoreText;
-    public ProfileManager profileManager;
+    private Text scoreText;
+    private ProfileManager profileManager;
 
     // Use this for initialization
     void Start () {
+        scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
         profileManager = GameObject.FindGameObjectWithTag("ProfileManager").GetComponent<ProfileManager>();
         scoreText.text = "Score: " + 0;
 	}

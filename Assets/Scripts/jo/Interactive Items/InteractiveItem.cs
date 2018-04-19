@@ -6,11 +6,13 @@ public abstract class InteractiveItem:MonoBehaviour {
 
     protected ProfileManager profileManager;
     protected static AudioManagement aSource;
+    protected UIController uiController;
 
     public bool debug = false;
 
     public virtual void Start()
     {
+        uiController = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIController>();
         profileManager = GameObject.FindGameObjectWithTag("ProfileManager").GetComponent<ProfileManager>();
         aSource = GameObject.Find("AudioManagement").GetComponent<AudioManagement>();
     }

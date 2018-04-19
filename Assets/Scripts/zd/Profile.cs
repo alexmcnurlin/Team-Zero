@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Profile : MonoBehaviour
+public class Profile
 {
 	private int id;
 	public string username;

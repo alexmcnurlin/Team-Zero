@@ -5,13 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class InGameUI : MonoBehaviour {
 
-    public GameObject pauseMenu;
-    public GameObject statsDisplay;
-    public bool paused = false;
+    private GameObject pauseMenu;
+    private GameObject statsDisplay;
+    private GameObject endOfLevelMenu;
+
+    private bool paused = false;
 
 	// Use this for initialization
 	void Start () {
-		
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+        statsDisplay = GameObject.FindGameObjectWithTag("StatsMenu");
+        endOfLevelMenu = GameObject.FindGameObjectWithTag("EndOfLevelMenu");
+
+        statsDisplay.SetActive(true);
+        pauseMenu.SetActive(false);
+        endOfLevelMenu.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -46,5 +54,12 @@ public class InGameUI : MonoBehaviour {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         Debug.Log("Going to Main Menu");
+    }
+
+    public void EndLevel()
+    {
+        endOfLevelMenu.SetActive(true);
+        pauseMenu.SetActive(false);
+        statsDisplay.SetActive(false);
     }
 }

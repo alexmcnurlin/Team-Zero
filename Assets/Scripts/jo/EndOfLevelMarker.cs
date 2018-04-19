@@ -6,10 +6,12 @@ public class EndOfLevelMarker : MonoBehaviour {
 
     private ProfileManager profileManager;
     private GameManager gameManager;
+    private InGameUI ui;
 
 	// Use this for initialization
 	void Start ()
     {
+        ui = GameObject.FindGameObjectWithTag("InGameUIController").GetComponent<InGameUI>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         profileManager = GameObject.FindGameObjectWithTag("ProfileManager").GetComponent<ProfileManager>();
 	}
@@ -23,7 +25,7 @@ public class EndOfLevelMarker : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         profileManager.LevelComplete();
+        ui.EndLevel();
         Debug.Log("Level Complete");
-        gameManager.Respawn();
     }
 }
