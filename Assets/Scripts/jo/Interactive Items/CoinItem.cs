@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinItem : InteractiveItem {
-
-    public static AudioManagement aSource;
     public CoinTypes coinType;
 
     public enum CoinTypes {
@@ -24,7 +22,7 @@ public class CoinItem : InteractiveItem {
     public override void Start()
     {
         base.Start();
-        aSource = GameObject.Find("AudioManagement").GetComponent<AudioManagement>();
+
     }
 
     public override void OnTriggerEnter2D(Collider2D other)

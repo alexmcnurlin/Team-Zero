@@ -13,6 +13,7 @@ public class AudioManagement : MonoBehaviour
         NPC,
         BG_MUSIC,
         COIN,
+        TOKEN,
         STOP,
         INVINCIBILITY
     }
@@ -29,6 +30,7 @@ public class AudioManagement : MonoBehaviour
     public AudioClip pUpClip;
     public AudioClip NPCClip;
     public AudioClip coinClip;
+    public AudioClip tokenClip;
     public AudioClip invincibility;
 
     public int bgMusicCounter = 0;
@@ -39,7 +41,7 @@ public class AudioManagement : MonoBehaviour
         allstar = (AudioClip)Resources.Load<AudioClip>("Sound/Allstar");
         spaceCave = (AudioClip)Resources.Load<AudioClip>("Sound/SpaceCave");
         lake = (AudioClip)Resources.Load<AudioClip>("Sound/Path to Lake Land");
-
+        tokenClip = (AudioClip)Resources.Load<AudioClip>("Sound/TokenSound");
         jumpClip = (AudioClip)Resources.Load<AudioClip>("Sound/Jump");
         damageClip = (AudioClip)Resources.Load<AudioClip>("Sound/Damage");
         pUpClip = (AudioClip)Resources.Load<AudioClip>("Sound/PowerUp");
@@ -90,6 +92,9 @@ public class AudioManagement : MonoBehaviour
 	{
         switch(fx)
         {
+            case SoundType.TOKEN:
+                aSource.PlayOneShot(tokenClip);
+                break;
             case SoundType.DAMAGE:
                 aSource.PlayOneShot(damageClip);
                 break;

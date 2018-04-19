@@ -15,6 +15,7 @@ public class TokenItem : InteractiveItem {
     {
         if(other.gameObject.tag == "MainPlayer") {
             profileManager.gameObject.SendMessage("CollectedToken", tokenID);
+            aSource.PlayFx(AudioManagement.SoundType.TOKEN);
             Destroy(gameObject);
         }
 
