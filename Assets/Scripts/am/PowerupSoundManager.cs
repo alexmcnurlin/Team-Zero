@@ -27,7 +27,8 @@ public class PowerupSoundManager
         if (isPlayingSound)
         {
             // Stop playing the sound
-            Debug.Log("TODO: stop existing powerup sound");
+            // Note, if there are any other FX playing, this will stop it
+            Debug.Log("Stopping existing powerup music");
             aSource.PlayFx(AudioManagement.SoundType.STOP);
             isPlayingSound = false;
         }
