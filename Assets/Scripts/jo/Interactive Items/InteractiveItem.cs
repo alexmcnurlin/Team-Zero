@@ -5,14 +5,14 @@ using UnityEngine;
 public abstract class InteractiveItem:MonoBehaviour {
 
     protected ProfileManager profileManager;
-    private GameObject profileManagerGameObject;
+    protected static AudioManagement aSource;
 
     public bool debug = false;
 
     public virtual void Start()
     {
-        profileManagerGameObject = GameObject.FindGameObjectWithTag("ProfileManager");
-        profileManager = profileManagerGameObject.GetComponent<ProfileManager>();
+        profileManager = GameObject.FindGameObjectWithTag("ProfileManager").GetComponent<ProfileManager>();
+        aSource = GameObject.Find("AudioManagement").GetComponent<AudioManagement>();
     }
 
     public virtual void OnTriggerEnter2D(Collider2D other)

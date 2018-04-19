@@ -5,7 +5,6 @@ using UnityEngine;
 public class TilemapItem : InteractiveItem {
 
     public TileMapTypes tileMapType;
-    //public ProfileManager profileManager;
 
     public enum TileMapTypes {
         None,
@@ -58,6 +57,7 @@ public class TilemapItem : InteractiveItem {
 
                 case TileMapTypes.Killing:
                     other.gameObject.SendMessage("CollideWithObject", "Killing");
+
                     break;
 
                 case TileMapTypes.EndOfLevel:

@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndOfLevelFlag : MonoBehaviour {
+public class EndOfLevelMarker : MonoBehaviour {
 
-    ProfileManager profileManager;
+    private ProfileManager profileManager;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         profileManager = GameObject.FindGameObjectWithTag("ProfileManager").GetComponent<ProfileManager>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
