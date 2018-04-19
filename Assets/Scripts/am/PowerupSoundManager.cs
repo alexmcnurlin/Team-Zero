@@ -17,7 +17,7 @@ public class PowerupSoundManager
         if (instance == null)
         {
             instance = new PowerupSoundManager();
-            aSource = GameObject.Find("Audio Source").GetComponent<AudioManagement>();
+            aSource = GameObject.Find("AudioManagement").GetComponent<AudioManagement>();
         }
         return instance;
 	}
@@ -27,14 +27,16 @@ public class PowerupSoundManager
         if (isPlayingSound)
         {
             // Stop playing the sound
-            Debug.Log("TODO: stop existing powerup sound");
+            // Note, if there are any other FX playing, this will stop it
+            Debug.Log("Stopping existing powerup music");
+            aSource.PlayFx(AudioManagement.SoundType.STOP);
             isPlayingSound = false;
         }
     
         if (powerupType == Modifier.INVINCIBLE)
         {
             isPlayingSound = true;
-            aSource.PlayFx(AudioManagement.SoundType.POWERUP);
+            aSource.PlayFx(AudioManagement.SoundType.INVINCIBILITY);
         }
         else if (powerupType == Modifier.JUMPHEIGHT)
         {

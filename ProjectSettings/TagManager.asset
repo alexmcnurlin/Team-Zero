@@ -12,9 +12,15 @@ TagManager:
   - MainPlayer
   - DirtFloor
   - ProfileManager
+<<<<<<< HEAD
   - LevelSelectController
   - AudioManagement
   - UIManager
+=======
+  - AudioManagement
+  - TestingObject
+  - GameManager
+>>>>>>> master
   layers:
   - Default
   - TransparentFX

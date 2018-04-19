@@ -54,11 +54,9 @@ public class Powerup : MonoBehaviour
 
     void Start()
     { 
-        // No implementation yet
     }
 
     void Update()
     {
-        // No implementation yet
     }
 }

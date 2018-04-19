@@ -22,7 +22,7 @@ public class Profile : MonoBehaviour
 		this.tokens = tokens;
 		this.score = score;
 	}
-
+   
 	public Profile(string username)
 	// second option of two for initialization
 	{
@@ -103,6 +103,18 @@ public class Profile : MonoBehaviour
 		{
 			this.tokens.Add(token);
 		}
+	}
+
+	public int GetTotalScore()
+	// Finds total score of profile
+	{
+		int total = 0;
+		foreach(KeyValuePair<int, int> entry in this.score)
+		{
+			total = total + entry.Value;
+		}
+			
+		return total;
 	}
 
 }
