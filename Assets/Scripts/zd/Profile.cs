@@ -105,4 +105,16 @@ public class Profile
 		}
 	}
 
+	public int GetTotalScore()
+	// Finds total score of profile
+	{
+		int total = 0;
+		foreach(KeyValuePair<int, int> entry in this.score)
+		{
+			total = total + entry.Value;
+		}
+			
+		return total;
+	}
+
 }

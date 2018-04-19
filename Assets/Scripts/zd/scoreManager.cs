@@ -151,7 +151,15 @@ public class ScoreManager : SuperClass
 	private void SendToServer(Profile player)
 	// Send player scores to server
 	{
-		// waiting on server implementation
+		// Run client command
+		System.Diagnostics.Process process = new System.Diagnostics.Process();
+		System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+		startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+		startInfo.FileName = "cmd.exe";
+		Debug.Log ("User Logging score: " + player.GetTotalScore ().ToString ());
+		startInfo.Arguments = "/C hssclient 52.160.46.238 2 \""+player.username.ToString()+"\" \""+player.GetTotalScore().ToString()+"\" ";
+		process.StartInfo = startInfo;
+		process.Start();
 	}
 
 	private List < int > StringToList(string str)
@@ -175,7 +183,7 @@ public class ScoreManager : SuperClass
 		{
 			str = str + list[i].ToString() + ",";
 		}
-		return str.TrimEnd('n');
+		return str.TrimEnd(',');
 	}
 
 	private Dictionary< int, int > StringToDict(string str)
