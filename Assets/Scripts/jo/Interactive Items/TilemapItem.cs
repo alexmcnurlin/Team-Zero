@@ -19,6 +19,7 @@ public class TilemapItem : InteractiveItem {
     public override void Start()
     {
         base.Start();
+        profileManager = GameObject.FindGameObjectWithTag("ProfileManager").GetComponent<ProfileManager>();
     }
 
     public override void OnCollisionEnter2D(Collision2D other)
@@ -56,6 +57,12 @@ public class TilemapItem : InteractiveItem {
 
                 case TileMapTypes.Killing:
                     other.gameObject.SendMessage("CollideWithObject", "Killing");
+
+                    break;
+
+                case TileMapTypes.EndOfLevel:
+                    Debug.Log("End of Level");
+                    profileManager.LevelComplete();
                     break;
 
                 default:

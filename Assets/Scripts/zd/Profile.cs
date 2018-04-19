@@ -22,7 +22,7 @@ public class Profile
 		this.tokens = tokens;
 		this.score = score;
 	}
-
+   
 	public Profile(string username)
 	// second option of two for initialization
 	{
