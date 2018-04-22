@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class AudioManagement : MonoBehaviour
 {
-
+    //Type used to allow easier calling of sounds
     public enum SoundType
     {
         DAMAGE,
@@ -18,53 +18,60 @@ public class AudioManagement : MonoBehaviour
         INVINCIBILITY,
         MENU
     }
-
+    //Keep track of background music for pausing
     public bool bgIsPlaying = true;
 
+    //Two sources, one to play bg music and one to play effects
     public AudioSource aSource;
     public AudioSource bgSource;
 
+    //Background clips
     public AudioClip allstar;
     public AudioClip spaceCave;
     public AudioClip lake;
     public AudioClip menu;
 
+    //Effects Clips
     public AudioClip jumpClip;
     public AudioClip damageClip;
     public AudioClip pUpClip;
-    public AudioClip NPCClip;
+    public AudioClip npcClip;
     public AudioClip coinClip;
     public AudioClip tokenClip;
     public AudioClip invincibility;
 
     public int bgMusicCounter = 0;
 
+    //Initialize all of the sound assets
     public void Start()
     {
-
+        //Music clips for background and menu
         allstar = (AudioClip)Resources.Load<AudioClip>("Sound/Allstar");
         spaceCave = (AudioClip)Resources.Load<AudioClip>("Sound/SpaceCave");
         lake = (AudioClip)Resources.Load<AudioClip>("Sound/Path to Lake Land");
         menu = (AudioClip)Resources.Load<AudioClip>("Sound/Menu");
 
+        //Effects clips for actions, status effects and collectables
         tokenClip = (AudioClip)Resources.Load<AudioClip>("Sound/TokenSound");
         jumpClip = (AudioClip)Resources.Load<AudioClip>("Sound/Jump");
         damageClip = (AudioClip)Resources.Load<AudioClip>("Sound/Damage");
         pUpClip = (AudioClip)Resources.Load<AudioClip>("Sound/PowerUp");
-        NPCClip = (AudioClip)Resources.Load<AudioClip>("Sound/NPC");
+        npcClip = (AudioClip)Resources.Load<AudioClip>("Sound/NPC");
         coinClip = (AudioClip)Resources.Load<AudioClip>("Sound/Coin");
         invincibility = (AudioClip)Resources.Load<AudioClip>("Sound/Invincibility");
 
-
-        bgSource.clip = spaceCave;
+        //Begin background music
         PlayMusic(SoundType.BG_MUSIC);
 
     }
 
     public void Update()
     {
+        //Used to test new sounds
         if (Input.GetKeyDown("u"))
             PlayFx(SoundType.INVINCIBILITY);
+
+        //Allow user to cycle through background music options
         if (Input.GetKeyDown("m"))
         {
             bgMusicCounter++;
@@ -72,6 +79,8 @@ public class AudioManagement : MonoBehaviour
                 bgMusicCounter = 0;
             PlayMusic(SoundType.BG_MUSIC);
         }
+
+        //Allow user to pause and resume background music
         if (Input.GetKeyDown("n"))
         {
             if (bgIsPlaying == true)
@@ -90,11 +99,13 @@ public class AudioManagement : MonoBehaviour
 
     public void PlayMusic(SoundType music)
     {
+        //Called by menu to play the menu music
         if (music == SoundType.MENU)
         {
             bgSource.clip = menu;
             bgSource.Play();
         }
+        //Play requested background music
         else if (music == SoundType.BG_MUSIC)
         {
             switch (bgMusicCounter)
@@ -117,6 +128,7 @@ public class AudioManagement : MonoBehaviour
 
     public void PlayFx(SoundType fx)
     {
+        //Check for requested effect and play accordingly
         switch (fx)
         {
             case SoundType.TOKEN:
@@ -132,7 +144,7 @@ public class AudioManagement : MonoBehaviour
                 aSource.PlayOneShot(pUpClip);
                 break;
             case SoundType.NPC:
-                aSource.PlayOneShot(NPCClip);
+                aSource.PlayOneShot(npcClip);
                 break;
             case SoundType.COIN:
                 aSource.PlayOneShot(coinClip);
