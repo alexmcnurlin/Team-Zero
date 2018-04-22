@@ -4,17 +4,21 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - LevelSelectController
+  - DirtFloor
+  - AudioManagement
+  - GameManager
   - Enemy
-  - Audio
-  - NPC
-  - Powerup
   - ScoreManager
   - MainPlayer
-  - DirtFloor
+  - NPC
   - ProfileManager
-  - AudioManagement
-  - TestingObject
-  - GameManager
+  - UIManager
+  - InGameUIController
+  - ScoreText
+  - PauseMenu
+  - EndOfLevelMenu
+  - StatsMenu
   layers:
   - Default
   - TransparentFX
@@ -24,8 +28,8 @@ TagManager:
   - UI
   - 
   - 
-  - MapDecorations
-  - MapTiles
+  - 
+  - 
   - 
   - 
   - 
@@ -50,7 +54,7 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Background
-    uniqueID: 2643477793
+    uniqueID: 962824437
     locked: 0
   - name: Default
     uniqueID: 0

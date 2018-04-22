@@ -46,4 +46,9 @@ public class ProfileManager : MonoBehaviour {
         Debug.Log("Saving Profile " + p.username.ToString() + " Saved");
         sc.Save(p);
     }
+
+    public int GetScore()
+    {
+        return currentScore;
+    }
 }

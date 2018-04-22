@@ -35,8 +35,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1454842225894982}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.519, y: -0.187, z: 0.16751169}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.1556187, y: -0.5118191, z: 0.13235544}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -65,11 +65,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1454842225894982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e13985ea0a1fc5d4a8fa283c501c1e20, type: 3}
+  m_Script: {fileID: 11500000, guid: 491354339d8dc8240975b6f74a1455cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 114263311208041546, guid: b82b8689a7ba1d74d8244af319b99b8f,
-    type: 2}
   debug: 0
   coinType: 1
 --- !u!212 &212606080530627308
