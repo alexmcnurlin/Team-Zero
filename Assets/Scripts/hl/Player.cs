@@ -14,14 +14,18 @@ public class Player : Character
     public Vector2 charAction;
     public bool midJump = false;
     private Powerup playerPowerup;
+    private Powerup playerCoolDown;
     public bool isInvincible = false;
     public bool isDoubleJump = false;
     public bool isFast = false;
     public bool hasPowerup = false;
+    public bool isRecovering = false;
     public float timeLeft;
     public AudioManagement aSource;
     public int damage;
-    
+    public int timeLength = 3;
+    private DateTime time;
+
     // Use this for initialization
     void Start()
     {
@@ -96,6 +100,16 @@ public class Player : Character
                 }
             }
         }
+
+        if(isRecovering)
+        {
+             if (TimeLeft().CompareTo(notime) < 0)
+                isRecovering = false;
+             // For visual of player damage:
+             // divide the time remaining which is 3 seconds
+             // Take the percentage...
+             // Or look up your own way to flicker damage
+        }
     }
 
     public void ApplyPowerup(Powerup powerup)
@@ -130,10 +144,35 @@ public class Player : Character
 
     public void ApplyDamage(int damage)
     {
-        if(!isInvincible)
+         int length = 3;
+
+        if(isRecovering)
+        Debug.Log("Is recovering" + TimeLeft());
+
+        //else
+        //Debug.Log("Player is vulernable");
+
+        if(!isInvincible && !isRecovering)
         {
+            Debug.Log("Applying damage");
             UpdateHealth(health - damage);
+            isRecovering = true;
+            time = DateTime.Now;
+            time = time.AddSeconds(length);
         }
+    }
+
+    public TimeSpan TimeLeft()
+    {
+        // Returns a TimeSpan object representing the time left before the powerup expires
+        // You can use the following to check if a powerup has expired, where
+        // TimeSpan notime = new TimeSpan(0);
+        // if (myPowerup.TimeLeft().CompareTo(notime) < 0)
+        // {
+        //     Debug.Log("Powerup has expired");
+        // }
+        DateTime now = DateTime.Now;
+        return time.Subtract(now);
     }
 
     void CollideWithObject(object tmp)
