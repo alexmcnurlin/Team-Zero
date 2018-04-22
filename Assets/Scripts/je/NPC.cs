@@ -29,6 +29,11 @@ public class NPC : MonoBehaviour
 		}
 	}
 
+	public string[] CasualChat ()
+	{
+		return d.casualChat;
+	}
+
 	public void CollideWithObject (object[] temp)
 	{
 		string type = (string)temp [0];
