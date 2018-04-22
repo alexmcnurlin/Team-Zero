@@ -18,6 +18,8 @@ public class AudioManagement : MonoBehaviour
         INVINCIBILITY,
         MENU
     }
+    public static AudioManagement instance = null; 
+
     //Keep track of background music for pausing
     public bool bgIsPlaying = true;
 
@@ -65,11 +67,23 @@ public class AudioManagement : MonoBehaviour
 
     }
 
+    public void SingletonCheck()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void Update()
     {
+        SingletonCheck();
+
         //Used to test new sounds
         if (Input.GetKeyDown("u"))
-            PlayFx(SoundType.INVINCIBILITY);
+            PlayFx(SoundType.JUMP);
 
         //Allow user to cycle through background music options
         if (Input.GetKeyDown("m"))
