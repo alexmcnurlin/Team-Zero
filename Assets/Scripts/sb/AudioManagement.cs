@@ -15,8 +15,11 @@ public class AudioManagement : MonoBehaviour
         COIN,
         TOKEN,
         STOP,
-        INVINCIBILITY
+        INVINCIBILITY,
+        MENU
     }
+
+    public bool bgIsPlaying = true;
 
     public AudioSource aSource;
     public AudioSource bgSource;
@@ -24,6 +27,7 @@ public class AudioManagement : MonoBehaviour
     public AudioClip allstar;
     public AudioClip spaceCave;
     public AudioClip lake;
+    public AudioClip menu;
 
     public AudioClip jumpClip;
     public AudioClip damageClip;
@@ -41,6 +45,8 @@ public class AudioManagement : MonoBehaviour
         allstar = (AudioClip)Resources.Load<AudioClip>("Sound/Allstar");
         spaceCave = (AudioClip)Resources.Load<AudioClip>("Sound/SpaceCave");
         lake = (AudioClip)Resources.Load<AudioClip>("Sound/Path to Lake Land");
+        menu = (AudioClip)Resources.Load<AudioClip>("Sound/Menu");
+
         tokenClip = (AudioClip)Resources.Load<AudioClip>("Sound/TokenSound");
         jumpClip = (AudioClip)Resources.Load<AudioClip>("Sound/Jump");
         damageClip = (AudioClip)Resources.Load<AudioClip>("Sound/Damage");
@@ -48,6 +54,7 @@ public class AudioManagement : MonoBehaviour
         NPCClip = (AudioClip)Resources.Load<AudioClip>("Sound/NPC");
         coinClip = (AudioClip)Resources.Load<AudioClip>("Sound/Coin");
         invincibility = (AudioClip)Resources.Load<AudioClip>("Sound/Invincibility");
+
 
         bgSource.clip = spaceCave;
         PlayMusic(SoundType.BG_MUSIC);
@@ -66,31 +73,51 @@ public class AudioManagement : MonoBehaviour
             PlayMusic(SoundType.BG_MUSIC);
         }
         if (Input.GetKeyDown("n"))
-            bgSource.Stop();
+        {
+            if (bgIsPlaying == true)
+            {
+                bgSource.Pause();
+                bgIsPlaying = false;
+            }
+            else
+            {
+                bgSource.UnPause();
+                bgIsPlaying = true;
+            }
+        }
     }
 
-    public void PlayMusic(SoundType music)
-	{
-        switch (bgMusicCounter)
-        {
-            case 0:
-                bgSource.clip = spaceCave;
-                bgSource.Play();
-                break;
-            case 1:
-                bgSource.clip = lake;
-                bgSource.Play();
-                break;
-            case 2:
-                bgSource.clip = allstar;
-                bgSource.Play();
-                break;
-        }
-	}
 
-	public void PlayFx(SoundType fx)
-	{
-        switch(fx)
+    public void PlayMusic(SoundType music)
+    {
+        if (music == SoundType.MENU)
+        {
+            bgSource.clip = menu;
+            bgSource.Play();
+        }
+        else if (music == SoundType.BG_MUSIC)
+        {
+            switch (bgMusicCounter)
+            {
+                case 0:
+                    bgSource.clip = spaceCave;
+                    bgSource.Play();
+                    break;
+                case 1:
+                    bgSource.clip = lake;
+                    bgSource.Play();
+                    break;
+                case 2:
+                    bgSource.clip = allstar;
+                    bgSource.Play();
+                    break;
+            }
+        }
+    }
+
+    public void PlayFx(SoundType fx)
+    {
+        switch (fx)
         {
             case SoundType.TOKEN:
                 aSource.PlayOneShot(tokenClip);
@@ -119,5 +146,5 @@ public class AudioManagement : MonoBehaviour
                 bgSource.UnPause();
                 break;
         }
-	}
+    }
 }
