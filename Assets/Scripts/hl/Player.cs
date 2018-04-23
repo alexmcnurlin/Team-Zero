@@ -125,7 +125,7 @@ public class Player : Character
         
     }    
 
-    public void ApplyDamage(float damage)
+    public void ApplyDamage(int damage)
     {
         if(!isInvicible)
         {
