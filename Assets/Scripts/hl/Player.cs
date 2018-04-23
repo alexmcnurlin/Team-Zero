@@ -54,6 +54,7 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
+
         //Store the current horizontal input in the float moveHorizontal.
         float moveHorizontal = Input.GetAxis("Horizontal");
 
