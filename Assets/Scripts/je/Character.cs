@@ -17,14 +17,14 @@ public abstract class Character : MonoBehaviour
 
 	// private list inventory;
 
-	private int MAX_HEALTH;
-	private int MAX_SPEED;
+	protected int MAX_HEALTH;
+	protected int MAX_SPEED;
 
-	private int money;
-	private int health;
+	protected int money;
+	protected int health;
 	protected float velocity;
 	protected float speed;
-	private Direction direction;
+	protected Direction direction;
 
 	public void Move()
 	{
