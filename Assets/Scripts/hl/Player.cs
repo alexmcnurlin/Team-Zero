@@ -12,11 +12,11 @@ public class Player : Character
     public int counter;
     public Vector2 localSpeed = new Vector2(10, 0);
     public Vector2 charAction;
-    public string midJump = "no";
+    public bool midJump = false;
     private Powerup playerPowerup;
-    public static bool isInvicible = false;
-    public static bool isDoubleJump = false;
-    public static bool isFast = false;
+    public bool isInvincible = false;
+    public bool isDoubleJump = false;
+    public bool isFast = false;
     public bool hasPowerup = false;
     public float timeLeft;
     public AudioManagement aSource;
@@ -63,14 +63,14 @@ public class Player : Character
         Movement(moveHorizontal, moveVertical);
 
         // Prevent double jumping
-        if (Input.GetKeyDown("space") && (midJump == "no"))
+        if (Input.GetKeyDown("space") && (midJump == false))
         {
             Jump();
-            midJump = "yes";
+            midJump = true;
         }
 
         if (GetComponent<Rigidbody2D>().velocity.y == 0)
-            midJump = "no";
+            midJump = false;
 
         TimeSpan notime = new TimeSpan(0);
         if(hasPowerup) 
@@ -82,7 +82,7 @@ public class Player : Character
 
                 if (playerPowerup.type == Modifier.INVINCIBLE)
                 {
-                    isInvicible = false;
+                    isInvincible = false;
                 }
 
                 else if(playerPowerup.type == Modifier.JUMPHEIGHT)
@@ -106,7 +106,8 @@ public class Player : Character
 
         if (playerPowerup.type == Modifier.INVINCIBLE)
         {
-            isInvicible = true;
+            isInvincible = true;
+            Debug.Log("now invincible");
             // Implement damage to enmeies and player later
         }
 
@@ -122,12 +123,14 @@ public class Player : Character
             // Temp double player speed
             Movement(20, 0);
         }
+
+        Debug.Log("powerup deactivated");
         
     }    
 
     public void ApplyDamage(int damage)
     {
-        if(!isInvicible)
+        if(!isInvincible)
         {
             UpdateHealth(health - damage);
         }
