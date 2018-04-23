@@ -39,12 +39,16 @@ public class Enemy : Character
 	void OnCollisionEnter2D (Collision2D other)
 	{
 		if (other.gameObject.tag != floorGameObjectTag) {
-			// if (other.gameObject.tag == "MainPlayer") {
-			// Player player = (Player)GameObject.FindWithTag ("MainPlayer");
-			// if (!player.IS_INVINCIBLE) {
-			// 	player.applyDamage(Player.MAX_HEALTH / 4);
-			// }
-			// }
+			if (other.gameObject.tag == "MainPlayer") {
+				GameObject playerGameObject = GameObject.FindWithTag ("MainPlayer");
+				Player player = null;
+				if (playerGameObject != null) {
+					player = playerGameObject.GetComponent<Player> ();
+				}
+				if (!player.isInvincible) {
+					player.ApplyDamage (MAX_HEALTH / 4);
+				}
+			}
 			velocity *= -1;
 		}
 	}
