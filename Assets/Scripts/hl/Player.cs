@@ -14,21 +14,20 @@ public class Player : Character
     public Vector2 charAction;
     public string midJump = "no";
     private Powerup playerPowerup;
-    public const float maxHealth = 100;
-    public float health;
     public static bool isInvicible = false;
     public static bool isDoubleJump = false;
     public static bool isFast = false;
     public bool hasPowerup = false;
     public float timeLeft;
     public AudioManagement aSource;
+    public int damage;
     
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         //aSource = GameObject.Find("AudioManagement").GetComponent<AudioManagement>();
-        health = maxHealth;
+        health = MAX_HEALTH;
     }
     // Not used for now
     private void FixedUpdate()
@@ -130,7 +129,7 @@ public class Player : Character
     {
         if(!isInvicible)
         {
-            health -= damage;
+            UpdateHealth(health - damage);
         }
     }
 
