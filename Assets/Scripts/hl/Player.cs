@@ -135,19 +135,28 @@ public class Player : Character
         }
     }
 
-    void CollideWithObject(object tmp)
+    void CollideWithObject(TilemapItem.TileMapTypes type)
     {
-        // look at Jorge's stuff
-    }
+        //  Look at TilemapItem.cs for help
+        switch(type) {
+            case TilemapItem.TileMapTypes.DefaultSpeed:
+                break;
+          
+            case TilemapItem.TileMapTypes.Slowing:
+                break;
 
-    void CollideWithObject(string kill)
-    {
-        // look at Jorge's stuff
-    }
+            case TilemapItem.TileMapTypes.Accelerating:
+                break;
 
-    void CollideWithResettingObject()
-    {
+            case TilemapItem.TileMapTypes.Damaging:
+                break;
 
+            case TilemapItem.TileMapTypes.Killing:
+                break;
+
+            default:
+                break;
+        }
     }
 
     void CollideWithObjectSound()
@@ -156,16 +165,6 @@ public class Player : Character
     }
 
     void OnTriggerEnter(Collider other)
-    {
-
-    }
-
-    void SetScoreText()
-    {
-
-    }
-
-    void SendPlayerScore()
     {
 
     }
