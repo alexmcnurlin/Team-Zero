@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Character
 {
@@ -24,7 +25,11 @@ public class Player : Character
     public AudioManagement aSource;
     public int damage;
     public int timeLength = 3;
+    public Image damageImage;
+    public float flashSpeed = 5f;
+    public Color flashColor = new Color(1f, 0f, 0f, 1f);
     private DateTime time;
+
 
     // Use this for initialization
     void Start()
@@ -32,11 +37,6 @@ public class Player : Character
         rb2d = GetComponent<Rigidbody2D>();
         //aSource = GameObject.Find("AudioManagement").GetComponent<AudioManagement>();
         health = MAX_HEALTH;
-    }
-    // Not used for now
-    private void FixedUpdate()
-    {
-
     }
 
     public void Movement(float moveHorizontal, float moveVertical)
@@ -63,7 +63,6 @@ public class Player : Character
         //Store the current vertical input in the float moveVertical.
         float moveVertical = Input.GetAxis("Vertical");
 
-        // Call Movement every iteration of FixedUpdate
         Movement(moveHorizontal, moveVertical);
 
         // Prevent double jumping
@@ -75,7 +74,7 @@ public class Player : Character
 
         if (GetComponent<Rigidbody2D>().velocity.y == 0)
             midJump = false;
-
+        
         TimeSpan notime = new TimeSpan(0);
         if(hasPowerup) 
         {
@@ -92,7 +91,6 @@ public class Player : Character
                 else if(playerPowerup.type == Modifier.JUMPHEIGHT)
                 {
                     isDoubleJump = false;
-
                 }
                 else if(playerPowerup.type == Modifier.SPEED)
                 {
@@ -103,12 +101,12 @@ public class Player : Character
 
         if(isRecovering)
         {
-             if (TimeLeft().CompareTo(notime) < 0)
+            if (TimeLeft().CompareTo(notime) < 0)
+            {
                 isRecovering = false;
-             // For visual of player damage:
-             // divide the time remaining which is 3 seconds
-             // Take the percentage...
-             // Or look up your own way to flicker damage
+            }
+
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
     }
 
@@ -149,13 +147,11 @@ public class Player : Character
         if(isRecovering)
         Debug.Log("Is recovering" + TimeLeft());
 
-        //else
-        //Debug.Log("Player is vulernable");
-
         if(!isInvincible && !isRecovering)
         {
             Debug.Log("Applying damage");
             UpdateHealth(health - damage);
+            damageImage.color = flashColor;
             isRecovering = true;
             time = DateTime.Now;
             time = time.AddSeconds(length);
@@ -164,37 +160,13 @@ public class Player : Character
 
     public TimeSpan TimeLeft()
     {
-        // Returns a TimeSpan object representing the time left before the powerup expires
-        // You can use the following to check if a powerup has expired, where
-        // TimeSpan notime = new TimeSpan(0);
-        // if (myPowerup.TimeLeft().CompareTo(notime) < 0)
-        // {
-        //     Debug.Log("Powerup has expired");
-        // }
         DateTime now = DateTime.Now;
         return time.Subtract(now);
     }
 
-
-
-    void CollideWithObject(object tmp)
-    {
-        // look at Jorge's stuff
-    }
-
     void CollideWithObject(string kill)
     {
-        // look at Jorge's stuff
-    }
-
-    void CollideWithResettingObject()
-    {
-
-    }
-
-    void CollideWithObjectSound()
-    {
-
+        // use at Jorge's stuff to remove player (ie death)
     }
 
     void OnTriggerEnter(Collider other)
@@ -202,17 +174,7 @@ public class Player : Character
 
     }
 
-    void SetScoreText()
-    {
-
-    }
-
     void SendPlayerScore()
-    {
-
-    }
-
-    void InteractsWithUI()
     {
 
     }
