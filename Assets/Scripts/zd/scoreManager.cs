@@ -56,7 +56,7 @@ public class ScoreManager : SuperClass
 		IDataReader reader = ExecuteQuery(sql);
 		if (reader.Read()) 
 		{
-
+			// make a profile from the database
 			return new Profile(
 				reader["Username"].ToString(),
 				StringToList(reader["CompletedLevels"].ToString()),
@@ -153,20 +153,6 @@ public class ScoreManager : SuperClass
 	private void SendToServer(Profile player)
 	// Send player scores to server
 	{
-        /*
-		// Run client command
-		System.Diagnostics.Process process = new System.Diagnostics.Process();
-		System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-		startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-		startInfo.FileName = "cmd.exe";
-		Debug.Log ("User Logging score: " + player.GetTotalScore ().ToString ());
-        //startInfo.Arguments = "/C hssclient 52.160.46.238 2 \""+player.username.ToString()+"\" \""+player.GetTotalScore().ToString()+"\" ";
-        startInfo.Arguments = Application.dataPath + "/Scripts/zd/hssclient.exe 52.160.46.238 2 \"" + player.username.ToString() + "\" \"" + player.GetTotalScore().ToString() + "\" ";
-        process.StartInfo = startInfo;
-        process.Start();
-        //Debug.Log(File.exists(Application.dataPath + "/Test.txt"));
-//        Debug.Log(process.Start().ToString());
-*/
         process = new Process();
         process.StartInfo.FileName = Application.dataPath + "\\Scripts\\zd\\hssclient.exe";
         process.StartInfo.Arguments = " 52.160.46.238 2 " + player.username.ToString() + " " + player.GetTotalScore().ToString();
