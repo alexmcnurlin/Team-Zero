@@ -74,10 +74,9 @@ public class Player : Character
         if (GetComponent<Rigidbody2D>().velocity.y == 0)
             midJump = "no";
 
-        TimeSpan notime = new TimeSpan(0);
         if(hasPowerup) 
         {
-            if (playerPowerup.TimeLeft().CompareTo(notime) < 0)
+            if (playerPowerup.IsExpired())
             {
                 Debug.Log("Powerup has expired");
                 hasPowerup = false;
@@ -110,6 +109,7 @@ public class Player : Character
         {
             isInvicible = true;
             // Implement damage to enmeies and player later
+            hasPowerup = true;
         }
 
         else if(playerPowerup.type == Modifier.JUMPHEIGHT)
@@ -123,8 +123,8 @@ public class Player : Character
             isFast = true;
             // Temp double player speed
             Movement(20, 0);
+            hasPowerup = true;
         }
-        
     }    
 
     public void ApplyDamage(float damage)
