@@ -76,9 +76,9 @@ public class Player : Character
         if (GetComponent<Rigidbody2D>().velocity.y == 0)
         {
             midJump = false;
-	}
-        
-        if(hasPowerup) 
+        }
+
+        if(hasPowerup)
         {
             if (playerPowerup.IsExpired())
             {
@@ -102,7 +102,7 @@ public class Player : Character
         }
 
 
-	TimeSpan notime = new TimeSpan(0);
+        TimeSpan notime = new TimeSpan(0);
         if(isRecovering)
         {
             if (TimeLeft().CompareTo(notime) < 0)
@@ -119,6 +119,7 @@ public class Player : Character
         Debug.Log("Accepted" + powerup.type + ".");
         powerup.ActivatePowerup();
 
+        ResetPowerup();
         if (playerPowerup.type == Modifier.INVINCIBLE)
         {
             isInvincible = true;
@@ -130,7 +131,7 @@ public class Player : Character
         else if(playerPowerup.type == Modifier.JUMPHEIGHT)
         {
             isDoubleJump = true;
-            Jump(); 
+            Jump();
         }
 
         else if(playerPowerup.type == Modifier.SPEED)
@@ -142,8 +143,15 @@ public class Player : Character
         }
 
         Debug.Log("powerup deactivated");
-        
-    }    
+
+    }
+
+    public void ResetPowerup()
+    {
+        isInvincible = false;
+        isDoubleJump = false;
+        isFast = false;
+    }
 
     public void ApplyDamage(int damage)
     {
