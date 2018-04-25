@@ -65,8 +65,4 @@ public class Powerup : MonoBehaviour
         soundManager = PowerupSoundManager.getInstance();
         StopAudio = soundManager.StopAudio;
     }
-
-    void Update()
-    {
-    }
 }
