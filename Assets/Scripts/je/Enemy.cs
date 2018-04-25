@@ -36,15 +36,32 @@ public class Enemy : Character
 		
 	}
 
-	void OnCollisionEnter2D (Collision2D other)
+	void OnCollisionEnter2D (Collision2D collision)
 	{
-		if (other.gameObject.tag != floorGameObjectTag) {
-			// if (other.gameObject.tag == "MainPlayer") {
-			// Player player = (Player)GameObject.FindWithTag ("MainPlayer");
-			// if (!player.IS_INVINCIBLE) {
-			// 	player.applyDamage(Player.MAX_HEALTH / 4);
-			// }
-			// }
+		if (collision.gameObject.tag != floorGameObjectTag) {
+			if (collision.gameObject.tag == "MainPlayer") {
+				GameObject playerGameObject = GameObject.FindWithTag ("MainPlayer");
+				Player player = null;
+				if (playerGameObject != null) {
+					player = playerGameObject.GetComponent<Player> ();
+				}
+
+				const float THRESHOLD_DISTANCE = 0.05f;
+				const int HEIGHT = 2;
+
+				if (Mathf.Abs (playerGameObject.transform.position.y) <= (Mathf.Abs (transform.position.y) - HEIGHT + THRESHOLD_DISTANCE)) {
+					// player jumped on head, enemy should die
+					UpdateHealth (0);
+					Destroy (gameObject);
+				} else {
+					// enemy should hurt player, non-head touch				
+					if (!player.isInvincible) {
+						player.ApplyDamage (MAX_HEALTH / 4);
+					}
+				}
+
+
+			}
 			velocity *= -1;
 		}
 	}
