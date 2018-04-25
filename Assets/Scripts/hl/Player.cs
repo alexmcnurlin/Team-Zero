@@ -26,7 +26,7 @@ public class Player : Character
     public int damage;
     public int timeLength = 3;
     public Image damageImage;
-    public float flashSpeed = 5f;
+    public float flashSpeed = 2f;
     public Color flashColor = new Color(1f, 0f, 0f, 1f);
     private DateTime time;
 
@@ -106,7 +106,6 @@ public class Player : Character
             {
                 isRecovering = false;
             }
-
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
     }
