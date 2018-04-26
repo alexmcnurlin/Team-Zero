@@ -13,6 +13,7 @@ public class Enemy : Character
 	//	private InventoryItem[] inventoryItemDrop;
 	//	private PowerUp[] powerUpItemDrop;
 	private int damageAmount;
+	public static AudioManagement soundManager;
 
 	public Enemy ()
 	{
@@ -35,7 +36,7 @@ public class Enemy : Character
 	// Use this for initialization
 	void Start ()
 	{
-		
+		soundManager = GameObject.Find ("AudioManagement").GetComponent<AudioManagement> ();
 	}
 
 	void OnCollisionEnter2D (Collision2D collision)
@@ -56,10 +57,9 @@ public class Enemy : Character
 					UpdateHealth (0);
 					Destroy (gameObject);
 				} else {
-					// player touched enemy, hurt the player by 25% of their max health				
-					if (!player.isInvincible) {
-						player.ApplyDamage (MAX_HEALTH / 4);
-					}
+					// player touched enemy, hurt the player by 25% of their max health
+					player.ApplyDamage (MAX_HEALTH / 4);
+					soundManager.PlayFx (AudioManagement.SoundType.DAMAGE);
 				}
 
 
