@@ -36,8 +36,8 @@ public class NPC : MonoBehaviour
 
 	public void CollideWithObject (object[] temp)
 	{
-		string type = (string)temp [0];
-		float speed = (float)temp [1];
-		velocity *= speed * 2;
+//		string type = (string)temp [0];
+//		float speed = (float)temp [1];
+//		velocity *= speed * 2;
 	}
 }
