@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+	// can be set via Unity editor; used to determine what is considered "ground" collision for the enemy
 	[SerializeField] string floorGameObjectTag;
+	// amount of money to be given to player on defeat
 	private int moneyRewardDefeatAmount;
 	private bool shouldRespawn;
 	private bool isVisibleOnScreen;
@@ -50,11 +52,11 @@ public class Enemy : Character
 				const int HEIGHT = 2;
 
 				if (Mathf.Abs (playerGameObject.transform.position.y) <= (Mathf.Abs (transform.position.y) - HEIGHT + THRESHOLD_DISTANCE)) {
-					// player jumped on head, enemy should die
+					// player jumped on enemy head, kill the enemy
 					UpdateHealth (0);
 					Destroy (gameObject);
 				} else {
-					// enemy should hurt player, non-head touch				
+					// player touched enemy, hurt the player by 25% of their max health				
 					if (!player.isInvincible) {
 						player.ApplyDamage (MAX_HEALTH / 4);
 					}
