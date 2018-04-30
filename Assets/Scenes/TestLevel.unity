@@ -28611,14 +28611,11 @@ MonoBehaviour:
   isRecovering: 0
   timeLeft: 0
   aSource: {fileID: 568273807}
-<<<<<<< HEAD
-=======
   damage: 0
   timeLength: 3
   damageImage: {fileID: 852540180}
   flashSpeed: 1
   flashColor: {r: 1, g: 0, b: 0, a: 1}
->>>>>>> master
 --- !u!61 &1952697956
 BoxCollider2D:
   m_ObjectHideFlags: 0
