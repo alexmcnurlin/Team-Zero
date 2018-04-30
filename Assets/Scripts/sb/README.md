@@ -7,6 +7,11 @@ Sounds are loaded in from the Assets/Resources/Sound folder using the unity func
 There are 2 main functions in the script, PlayFx and PlayMusic.
 These functions take SoundType arguments and play the corresponding sound effect or music.
 
+The script follows a singleton pattern so as long as the object is created in one scene it should be able to 
+carry over between scenes.
+
+The 'm' and 'n' keys are used to change background music and pause music respectively.
+
 Additional sounds can be added using the following steps:
 1. Place the sound clip in the Assets/Resources folder
 2. In the Start() function, load the sound file into an AudioClip variable
