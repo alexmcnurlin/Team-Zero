@@ -161,7 +161,6 @@ abstract class PlayerAlive : IDeadPlayer
                 Movement(20, 0);
                 hasPowerup = true;
             }
-
             Debug.Log("powerup deactivated");
 
         }
@@ -207,11 +206,6 @@ abstract class PlayerAlive : IDeadPlayer
             return time.Subtract(now);
         }
 
-        void CollideWithObject(string kill)
-        {
-            // Jorges object for collision
-        }
-
         void OnTriggerEnter(Collider other)
         {
 
@@ -222,4 +216,27 @@ abstract class PlayerAlive : IDeadPlayer
 
         }
 
+    void CollideWithObject(TilemapItem.TileMapTypes type)
+    {
+        //  Look at TilemapItem.cs for help
+        switch(type) {
+            case TilemapItem.TileMapTypes.DefaultSpeed:
+                break;
+
+            case TilemapItem.TileMapTypes.Slowing:
+                break;
+
+            case TilemapItem.TileMapTypes.Accelerating:
+                break;
+
+            case TilemapItem.TileMapTypes.Damaging:
+                break;
+
+            case TilemapItem.TileMapTypes.Killing:
+                break;
+
+            default:
+                break;
+        }
     }
+}

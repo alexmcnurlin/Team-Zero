@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MainMenu:MonoBehaviour {
 
+    //  Different GameObject representing various Menus
     public GameObject mainMenu;
     public GameObject settingsMenu;
     public GameObject levelSelect;
