@@ -19,6 +19,9 @@ TagManager:
   - PauseMenu
   - EndOfLevelMenu
   - StatsMenu
+  - DialogueText
+  - DialogueCanvas
+  - DialogueHandler
   layers:
   - Default
   - TransparentFX

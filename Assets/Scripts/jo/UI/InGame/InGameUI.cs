@@ -8,11 +8,13 @@ public class InGameUI : MonoBehaviour {
     private GameObject pauseMenu;
     private GameObject statsDisplay;
     private GameObject endOfLevelMenu;
+    public GameObject dialogueBox;
 
     private bool paused = false;
 
 	// Use this for initialization
 	void Start () {
+        dialogueBox = GameObject.FindGameObjectWithTag("DialogueCanvas");
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
         statsDisplay = GameObject.FindGameObjectWithTag("StatsMenu");
         endOfLevelMenu = GameObject.FindGameObjectWithTag("EndOfLevelMenu");
@@ -20,7 +22,8 @@ public class InGameUI : MonoBehaviour {
         statsDisplay.SetActive(true);
         pauseMenu.SetActive(false);
         endOfLevelMenu.SetActive(false);
-	}
+        dialogueBox.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,20 +36,25 @@ public class InGameUI : MonoBehaviour {
         }
 	}
 
-    void Pause()
+    public void Pause()
     {
-        paused = true;
         pauseMenu.SetActive(true);
         statsDisplay.SetActive(false);
-        Time.timeScale = 0;
+        PauseGame();
     }
 
-    void Unpause()
+    public void Unpause()
     {
         paused = false;
         statsDisplay.SetActive(true);
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void PauseGame()
+    {
+        paused = true;
+        Time.timeScale = 0;
     }
 
     public void GoToMainMenu()
