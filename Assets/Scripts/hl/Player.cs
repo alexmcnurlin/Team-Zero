@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 interface IDeadPlayer
 {
+
     void KillPlayer();
 }
 
