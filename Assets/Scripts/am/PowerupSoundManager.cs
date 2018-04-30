@@ -11,8 +11,6 @@ public class PowerupSoundManager
 
     // Use the singleton pattern to manage playing audio for powerups.
     // This allows us to keep track of whether audio is playing, and stop the existing audio if it is
-    // Right now, this doesn't actually stop playing music, since the audio manager doesn't support it.
-    //     This should change in the future though.
 	public static PowerupSoundManager getInstance() {
         if (instance == null)
         {
@@ -32,26 +30,32 @@ public class PowerupSoundManager
             aSource.PlayFx(AudioManagement.SoundType.STOP);
             isPlayingSound = false;
         }
-    
+
+        // Play the appropriate sound based on what powerup is given
         if (powerupType == Modifier.INVINCIBLE)
         {
-            isPlayingSound = true;
             aSource.PlayFx(AudioManagement.SoundType.INVINCIBILITY);
         }
         else if (powerupType == Modifier.JUMPHEIGHT)
         {
-            isPlayingSound = true;
             aSource.PlayFx(AudioManagement.SoundType.POWERUP);
         }
         else if (powerupType == Modifier.SPEED)
         {
-
-            isPlayingSound = true;
             aSource.PlayFx(AudioManagement.SoundType.POWERUP);
         }
         else
         {
             Debug.Log("Powerup type has no sound!");
+            return;
         }
+        isPlayingSound = true;
+
+    }
+
+    public void StopAudio()
+    {
+        aSource.PlayFx(AudioManagement.SoundType.STOP);
+        isPlayingSound = false;
     }
 }
