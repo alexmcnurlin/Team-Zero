@@ -22,7 +22,7 @@ public abstract class Character : MonoBehaviour
 	// private list inventory;
 
 	// subclasses may have differing max health/speed, allow them to customize it
-	protected int MAX_HEALTH;
+	protected int MAX_HEALTH = 100;
 	protected int MAX_SPEED;
 
 	// only subclasses need to access these members
@@ -31,7 +31,7 @@ public abstract class Character : MonoBehaviour
 	protected float velocity;
 	protected float speed;
 	protected Direction direction;
-	
+
 	public bool IsDead ()
 	{
 		return (health <= 0);
