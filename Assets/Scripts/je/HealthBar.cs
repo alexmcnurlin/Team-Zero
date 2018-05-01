@@ -5,8 +5,8 @@ public class HealthBar : MonoBehaviour
 {
 	public float barDisplay;
 	//current progress
-	public Vector2 pos = new Vector2 (20, 40);
-	public Vector2 size = new Vector2 (60, 20);
+	public Vector2 pos = new Vector2 (45, 40);
+	public Vector2 size = new Vector2 (76, 20);
 	public Texture2D emptyTex;
 	public Texture2D fullTex;
 	Player player;
@@ -22,12 +22,23 @@ public class HealthBar : MonoBehaviour
 
 	void OnGUI ()
 	{
+		Texture2D red = new Texture2D (1, 1);
+		red.SetPixel (0, 0, new Color (255, 59, 48));
+		red.Apply ();
+		GUIStyle textureStyle = new GUIStyle { normal = new GUIStyleState { background = red } };
+
 		//draw the background:
 		GUI.BeginGroup (new Rect (pos.x, pos.y, size.x, size.y));
-		GUI.Box (new Rect (0, 0, size.x, size.y), emptyTex);
+		GUI.Box (new Rect (0, 0, size.x, size.y), GUIContent.none, textureStyle);
+
+		Texture2D green = new Texture2D (1, 1);
+		green.SetPixel (0, 0, new Color (76, 217, 100));
+		green.Apply ();
+		GUIStyle greenStyle = new GUIStyle { normal = new GUIStyleState { background = green } };
+
 		//draw the filled-in part:
 		GUI.BeginGroup (new Rect (0, 0, size.x * barDisplay, size.y));
-		GUI.Box (new Rect (0, 0, size.x, size.y), fullTex);
+		GUI.Box (new Rect (0, 0, size.x, size.y), GUIContent.none, greenStyle);
 		GUI.EndGroup ();
 		GUI.EndGroup ();
 	}
