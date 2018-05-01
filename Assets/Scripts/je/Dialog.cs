@@ -4,19 +4,20 @@ using System.Collections.Generic;
 [Serializable]
 public class Dialog
 {
-
+	// chat has no functional consequences other than communication unlike quest, which requires further work/checking
 	public enum DialogType
 	{
 		CasualChat,
 		Quest,
-
 	}
 
+	// static keys to find specific dialog entries/trees
 	public enum Role
 	{
 		FindSyrupQuest,
 	}
 
+	// transfer static dialog data to JSON file and write input function to read from JSON file so others can edit
 	public static Dictionary<Role, string> dialogData = new Dictionary<Role, string> () { {
 			Role.FindSyrupQuest, 
 			@"{

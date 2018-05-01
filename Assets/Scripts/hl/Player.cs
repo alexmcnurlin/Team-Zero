@@ -10,22 +10,22 @@ using UnityEngine.UI;
 interface IDeadPlayer
 {
 
-    void KillPlayer();
+	void KillPlayer ();
 }
 
 abstract class PlayerAlive : IDeadPlayer
 {
-    public static readonly IDeadPlayer NULL = new NULLPlayerAlive();
+	public static readonly IDeadPlayer NULL = new NULLPlayerAlive ();
 
-    private class NULLPlayerAlive : PlayerAlive
-    {
-        public override void KillPlayer()
-        {
-            // Purposfully provides no behavior.
-        }
-    }
+	private class NULLPlayerAlive : PlayerAlive
+	{
+		public override void KillPlayer ()
+		{
+			// Purposfully provides no behavior
+		}
+	}
 
-    public abstract void KillPlayer();
+	public abstract void KillPlayer ();
 }
 
     public class Player : Character , IDeadPlayer 
@@ -211,6 +211,11 @@ abstract class PlayerAlive : IDeadPlayer
             }
         }
 
+    protected override void Move()
+    {
+        throw new NotImplementedException();
+    }
+
     public void KillPlayer()
     {
         if(!isInvincible && health == 0)
@@ -259,4 +264,5 @@ abstract class PlayerAlive : IDeadPlayer
                 break;
         }
     }
+
 }
