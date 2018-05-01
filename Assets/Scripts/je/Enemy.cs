@@ -13,7 +13,7 @@ public class Enemy : Character
 	//	private InventoryItem[] inventoryItemDrop;
 	//	private PowerUp[] powerUpItemDrop;
 	private int damageAmount;
-	public static AudioManagement soundManager = null;
+	private AudioManagement soundManager;
 
 	public Enemy ()
 	{
@@ -36,7 +36,9 @@ public class Enemy : Character
 	// Use this for initialization
 	void Start ()
 	{
-	}
+        soundManager = GameObject.FindGameObjectWithTag("AudioManagement").GetComponent<AudioManagement>();
+
+    }
 
 	void OnCollisionEnter2D (Collision2D collision)
 	{

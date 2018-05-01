@@ -28,198 +28,241 @@ abstract class PlayerAlive : IDeadPlayer
 	public abstract void KillPlayer ();
 }
 
+    public class Player : Character , IDeadPlayer 
+    {
+        private Rigidbody2D rb2d;
+        private DateTime sec;
+        public int counter;
+        public Vector2 localSpeed = new Vector2(10, 0);
+        public Vector2 charAction;
+        public bool midJump = false;
+        private Powerup playerPowerup;
+        private Powerup playerCoolDown;
+        public bool isInvincible = false;
+        public bool isDoubleJump = false;
+        public bool isFast = false;
+        public bool hasPowerup = false;
+        public bool isRecovering = false;
+        public float timeLeft;
+        public AudioManagement aSource;
+        public int damage;
+        private int flickerLength = 1;  //  Must be shorter than "timeLength" 
+                                        //  When changed to float - Instead of AddSeconds
+                                        //  Add MiliSeconds( flickerLength * 1000)
+        public int timeLength = 3;      //  Total Length of time it takes to "recover" from injury
+        public Image damageImage;
+       
+        //public GameObject gameObject;
+        public float flashSpeed = 2f;
+        public Color flashColor = new Color(1f, 0f, 0f, 1f);
+        private DateTime time;
 
-public class Player : Character , IDeadPlayer
-{
-	private Rigidbody2D rb2d;
-	public int counter;
-	public Vector2 localSpeed = new Vector2 (10, 0);
-	public Vector2 charAction;
-	public bool midJump = false;
-	private Powerup playerPowerup;
-	private Powerup playerCoolDown;
-	public bool isInvincible = false;
-	public bool isDoubleJump = false;
-	public bool isFast = false;
-	public bool hasPowerup = false;
-	public bool isRecovering = false;
-	public float timeLeft;
-	public AudioManagement aSource;
-	public int damage;
-	public int timeLength = 3;
-	public Image damageImage;
-	public float flashSpeed = 2f;
-	public Color flashColor = new Color (1f, 0f, 0f, 1f);
-	private DateTime time;
+
+        // Use this for initialization.
+        void Start()
+        {
+            rb2d = GetComponent<Rigidbody2D>();
+            health = MAX_HEALTH;
+        }
+
+        public void Movement(float moveHorizontal, float moveVertical)
+        {
+            //Use the two store floats to create a new Vector2 variable movement.
+            Vector2 movement = new Vector2(localSpeed.x * moveHorizontal, localSpeed.y * moveVertical);
+
+            //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
+            rb2d.AddForce(movement);
+        }
+
+        public void Jump()
+        {
+            // Apply 7 units of force in the y direction.
+            rb2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
+            aSource.PlayFx(AudioManagement.SoundType.JUMP);
+        }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        //Store the current horizontal input in the float moveHorizontal.
+        float moveHorizontal = Input.GetAxis("Horizontal");
+
+        //Store the current vertical input in the float moveVertical.
+        float moveVertical = Input.GetAxis("Vertical");
+
+        Movement(moveHorizontal, moveVertical);
+
+        // Prevent double jumping
+        if(Input.GetKeyDown("space") && (midJump == false)) {
+            Jump();
+            midJump = true;
+        }
+
+        if(GetComponent<Rigidbody2D>().velocity.y == 0) {
+            midJump = false;
+        }
+
+        if(hasPowerup) {
+            if(playerPowerup.IsExpired()) {
+                Debug.Log("Powerup has expired");
+                hasPowerup = false;
+
+                if(playerPowerup.type == Modifier.INVINCIBLE) {
+                    isInvincible = false;
+                } else if(playerPowerup.type == Modifier.JUMPHEIGHT) {
+                    isDoubleJump = false;
+                } else if(playerPowerup.type == Modifier.SPEED) {
+                    isFast = false;
+                }
+            }
+        }
+
+        // start recovery counter
+        TimeSpan notime = new TimeSpan(0);
+        DateTime now = DateTime.Now;
+
+        if(isRecovering) {
+
+            if(sec.Subtract(now).CompareTo(notime) <= 0) {
+
+                if(gameObject.GetComponent<SpriteRenderer>().enabled) {
+                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                    sec = DateTime.Now.AddSeconds(flickerLength);
+                } else {
+                    gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                    sec = DateTime.Now.AddSeconds(flickerLength);
+                }
+            }
+
+            if(time.Subtract(now).CompareTo(notime) <= 0) {
+                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                isRecovering = false;
+            }
 
 
-	// Use this for initialization
-	void Start ()
-	{
-		rb2d = GetComponent<Rigidbody2D> ();
-		health = MAX_HEALTH;
-	}
+            //gameObject.GetComponent<SpriteRenderer>().enabled = true;
 
-	public void Movement (float moveHorizontal, float moveVertical)
-	{
-		//Use the two store floats to create a new Vector2 variable movement.
-		Vector2 movement = new Vector2 (localSpeed.x * moveHorizontal, localSpeed.y * moveVertical);
+            //damageImage.GetComponent<SpriteRenderer>().color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            //damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            // }
+        }
+    }
+        public void ApplyPowerup(Powerup powerup)
+        {
+            playerPowerup = powerup;
+            Debug.Log("Accepted" + powerup.type + ".");
+            powerup.ActivatePowerup();
 
-		//Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-		rb2d.AddForce (movement);
-	}
+            ResetPowerup();
+            if (playerPowerup.type == Modifier.INVINCIBLE)
+            {
+                isInvincible = true;
+                Debug.Log("now invincible");
+                hasPowerup = true;
+            }
 
-	public void Jump ()
-	{
-		// Apply 7 units of force in the y direction
-		rb2d.AddForce (new Vector2 (0, 7), ForceMode2D.Impulse);
-		aSource.PlayFx (AudioManagement.SoundType.JUMP);
-	}
+            else if (playerPowerup.type == Modifier.JUMPHEIGHT)
+            {
+                isDoubleJump = true;
+                Jump();
+            }
 
-	// Update is called once per frame
-	void Update ()
-	{
+            else if (playerPowerup.type == Modifier.SPEED)
+            {
+                isFast = true;
+                // Temp double player speed.
+                Movement(20, 0);
+                hasPowerup = true;
+            }
+            Debug.Log("powerup deactivated");
 
-		//Store the current horizontal input in the float moveHorizontal.
-		float moveHorizontal = Input.GetAxis ("Horizontal");
+        }
 
-		//Store the current vertical input in the float moveVertical.
-		float moveVertical = Input.GetAxis ("Vertical");
+        public void ResetPowerup()
+        {
+            isInvincible = false;
+            isDoubleJump = false;
+            isFast = false;
+        }
 
-		Movement (moveHorizontal, moveVertical);
+        public void ApplyDamage(int damage)
+        {
+            // Player gets 3 seconds of recovery.
+            int length = 3;
 
-		// Prevent double jumping
-		if (Input.GetKeyDown ("space") && (midJump == false)) {
-			Jump ();
-			midJump = true;
-		}
+            if (isRecovering)
+                Debug.Log("Is recovering" + TimeLeft());
 
-		if (GetComponent<Rigidbody2D> ().velocity.y == 0) {
-			midJump = false;
-		}
+            if (!isInvincible && !isRecovering)
+            {
+                Debug.Log("Applying damage");
+                UpdateHealth(health - damage);
+            //Jorge
+            //gameObject.SetActive(false);
+            //damageImage.GetComponent<SpriteRenderer>().color = Color.red;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            Debug.Log("Color is being changed to flashColor");
+                //damageImage.color = flashColor;
+                isRecovering = true;
+                sec = DateTime.Now.AddSeconds(flickerLength);
+                Debug.Log("Timer: " + sec.Subtract(DateTime.Now).ToString());
+                time = DateTime.Now.AddSeconds(length);
+            }
+        }
 
-		if (hasPowerup) {
-			if (playerPowerup.IsExpired ()) {
-				Debug.Log ("Powerup has expired");
-				hasPowerup = false;
+    protected override void Move()
+    {
+        throw new NotImplementedException();
+    }
 
-				if (playerPowerup.type == Modifier.INVINCIBLE) {
-					isInvincible = false;
-				} else if (playerPowerup.type == Modifier.JUMPHEIGHT) {
-					isDoubleJump = false;
-				} else if (playerPowerup.type == Modifier.SPEED) {
-					isFast = false;
-				}
-			}
-		}
-		// start recovery counter
-		TimeSpan notime = new TimeSpan (0);
+    public void KillPlayer()
+    {
+        if(!isInvincible && health == 0)
+        {
+            // Remove player.
+            Debug.Log("Player is dead!");
+        }
+    }
 
-		if (isRecovering) {
-			if (TimeLeft ().CompareTo (notime) < 0) {
-				isRecovering = false;
-			}
-			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
-		}
-	}
+        public TimeSpan TimeLeft()
+        {
+            DateTime now = DateTime.Now;
+            return time.Subtract(now);
+        }
 
-	public void ApplyPowerup (Powerup powerup)
-	{
-		playerPowerup = powerup;
-		Debug.Log ("Accepted" + powerup.type + ".");
-		powerup.ActivatePowerup ();
+        void OnTriggerEnter(Collider other)
+        {
 
-		ResetPowerup ();
-		if (playerPowerup.type == Modifier.INVINCIBLE) {
-			isInvincible = true;
-			Debug.Log ("now invincible");
-			hasPowerup = true;
-		} else if (playerPowerup.type == Modifier.JUMPHEIGHT) {
-			isDoubleJump = true;
-			Jump ();
-		} else if (playerPowerup.type == Modifier.SPEED) {
-			isFast = true;
-			// Temp double player speed
-			Movement (20, 0);
-			hasPowerup = true;
-		}
-		Debug.Log ("powerup deactivated");
+        }
 
-	}
+        override protected void OnCollision()
+        {
 
-    protected override void Move() { }
+        }
 
-	public void ResetPowerup ()
-	{
-		isInvincible = false;
-		isDoubleJump = false;
-		isFast = false;
-	}
+    void CollideWithObject(TilemapItem.TileMapTypes type)
+    {
+        //  Look at TilemapItem.cs for help
+        switch(type) {
+            case TilemapItem.TileMapTypes.DefaultSpeed:
+                break;
 
-	public void ApplyDamage (int damage)
-	{
-		// Player gets 3 seconds of recovery
-		int length = 3;
+            case TilemapItem.TileMapTypes.Slowing:
+                break;
 
-		if (isRecovering)
-			Debug.Log ("Is recovering" + TimeLeft ());
+            case TilemapItem.TileMapTypes.Accelerating:
+                break;
 
-		if (!isInvincible && !isRecovering) {
-			Debug.Log ("Applying damage");
-			UpdateHealth (health - damage);
-			Debug.Log ("health: " + health);
-			damageImage.color = flashColor;
-			isRecovering = true;
-			time = DateTime.Now;
-			time = time.AddSeconds (length);
-		}
-	}
+            case TilemapItem.TileMapTypes.Damaging:
+                break;
 
-	public void KillPlayer ()
-	{
-		if (!isInvincible && health == 0) {
-			// remove player
-			Debug.Log ("Player is dead!");
-		}
-	}
+            case TilemapItem.TileMapTypes.Killing:
+                break;
 
-	public TimeSpan TimeLeft ()
-	{
-		DateTime now = DateTime.Now;
-		return time.Subtract (now);
-	}
+            default:
+                break;
+        }
+    }
 
-	void OnTriggerEnter (Collider other)
-	{
-
-	}
-
-	override protected void OnCollision ()
-	{
-
-	}
-
-	void CollideWithObject (TilemapItem.TileMapTypes type)
-	{
-		//  Look at TilemapItem.cs for help
-		switch (type) {
-		case TilemapItem.TileMapTypes.DefaultSpeed:
-			break;
-
-		case TilemapItem.TileMapTypes.Slowing:
-			break;
-
-		case TilemapItem.TileMapTypes.Accelerating:
-			break;
-
-		case TilemapItem.TileMapTypes.Damaging:
-			break;
-
-		case TilemapItem.TileMapTypes.Killing:
-			break;
-
-		default:
-			break;
-		}
-	}
 }
