@@ -27,18 +27,20 @@ public class HealthBar : MonoBehaviour
 		red.Apply ();
 		GUIStyle textureStyle = new GUIStyle { normal = new GUIStyleState { background = red } };
 
+		GUI.color = Color.red;
 		//draw the background:
 		GUI.BeginGroup (new Rect (pos.x, pos.y, size.x, size.y));
 		GUI.Box (new Rect (0, 0, size.x, size.y), GUIContent.none, textureStyle);
 
-		Texture2D green = new Texture2D (1, 1);
-		green.SetPixel (0, 0, new Color (76, 217, 100));
-		green.Apply ();
-		GUIStyle greenStyle = new GUIStyle { normal = new GUIStyleState { background = green } };
+//		Texture2D green = new Texture2D (1, 1);
+//		green.SetPixel (0, 0, new Color (76, 217, 100));
+//		green.Apply ();
+//		GUIStyle greenStyle = new GUIStyle { normal = new GUIStyleState { background = green } };
 
+		GUI.color = Color.green;
 		//draw the filled-in part:
 		GUI.BeginGroup (new Rect (0, 0, size.x * barDisplay, size.y));
-		GUI.Box (new Rect (0, 0, size.x, size.y), GUIContent.none, greenStyle);
+		GUI.Box (new Rect (0, 0, size.x, size.y), GUIContent.none, textureStyle);
 		GUI.EndGroup ();
 		GUI.EndGroup ();
 	}
