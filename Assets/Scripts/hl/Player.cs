@@ -28,6 +28,7 @@ abstract class PlayerAlive : IDeadPlayer
 	public abstract void KillPlayer ();
 }
 
+
 public class Player : Character , IDeadPlayer
 {
 	private Rigidbody2D rb2d;
@@ -145,6 +146,8 @@ public class Player : Character , IDeadPlayer
 		Debug.Log ("powerup deactivated");
 
 	}
+
+    protected override void Move() { }
 
 	public void ResetPowerup ()
 	{

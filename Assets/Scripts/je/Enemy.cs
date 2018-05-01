@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+	// can be set via Unity editor; used to determine what is considered "ground" collision for the enemy
 	[SerializeField] string floorGameObjectTag;
+	// amount of money to be given to player on defeat
 	private int moneyRewardDefeatAmount;
 	private bool shouldRespawn;
 	private bool isVisibleOnScreen;
 	//	private InventoryItem[] inventoryItemDrop;
 	//	private PowerUp[] powerUpItemDrop;
 	private int damageAmount;
+	public static AudioManagement soundManager = null;
 
 	public Enemy ()
 	{
@@ -22,7 +25,7 @@ public class Enemy : Character
 
 	}
 
-	public void Move ()
+	protected override void Move ()
 	{
 		Vector2 position = transform.position;
 		float translation = Time.deltaTime * velocity;
@@ -33,7 +36,6 @@ public class Enemy : Character
 	// Use this for initialization
 	void Start ()
 	{
-		
 	}
 
 	void OnCollisionEnter2D (Collision2D collision)
@@ -50,13 +52,14 @@ public class Enemy : Character
 				const int HEIGHT = 2;
 
 				if (Mathf.Abs (playerGameObject.transform.position.y) <= (Mathf.Abs (transform.position.y) - HEIGHT + THRESHOLD_DISTANCE)) {
-					// player jumped on head, enemy should die
+					// player jumped on enemy head, kill the enemy
 					UpdateHealth (0);
 					Destroy (gameObject);
 				} else {
-					// enemy should hurt player, non-head touch				
-					if (!player.isInvincible) {
-						player.ApplyDamage (MAX_HEALTH / 4);
+					// player touched enemy, hurt the player by 25% of their max health
+					player.ApplyDamage (MAX_HEALTH / 4);
+					if (soundManager == null) {
+						soundManager.PlayFx (AudioManagement.SoundType.DAMAGE);
 					}
 				}
 
