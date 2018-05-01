@@ -21,7 +21,7 @@ abstract class PlayerAlive : IDeadPlayer
     {
         public override void KillPlayer()
         {
-            // Purposfully provides no behavior
+            // Purposfully provides no behavior.
         }
     }
 
@@ -58,7 +58,7 @@ abstract class PlayerAlive : IDeadPlayer
         private DateTime time;
 
 
-        // Use this for initialization
+        // Use this for initialization.
         void Start()
         {
             rb2d = GetComponent<Rigidbody2D>();
@@ -76,7 +76,7 @@ abstract class PlayerAlive : IDeadPlayer
 
         public void Jump()
         {
-            // Apply 7 units of force in the y direction
+            // Apply 7 units of force in the y direction.
             rb2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
             aSource.PlayFx(AudioManagement.SoundType.JUMP);
         }
@@ -171,7 +171,7 @@ abstract class PlayerAlive : IDeadPlayer
             else if (playerPowerup.type == Modifier.SPEED)
             {
                 isFast = true;
-                // Temp double player speed
+                // Temp double player speed.
                 Movement(20, 0);
                 hasPowerup = true;
             }
@@ -188,7 +188,7 @@ abstract class PlayerAlive : IDeadPlayer
 
         public void ApplyDamage(int damage)
         {
-            // Player gets 3 seconds of recovery
+            // Player gets 3 seconds of recovery.
             int length = 3;
 
             if (isRecovering)
@@ -215,7 +215,7 @@ abstract class PlayerAlive : IDeadPlayer
     {
         if(!isInvincible && health == 0)
         {
-            // remove player
+            // Remove player.
             Debug.Log("Player is dead!");
         }
     }
