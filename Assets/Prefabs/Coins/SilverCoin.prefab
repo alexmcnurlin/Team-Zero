@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4493441313360024}
   - component: {fileID: 212598453452788348}
   - component: {fileID: 58687319839079092}
-  - component: {fileID: 114088643714491176}
+  - component: {fileID: 114670224752827638}
   m_Layer: 0
   m_Name: SilverCoin
   m_TagString: Untagged
@@ -57,7 +57,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.014625013}
   serializedVersion: 2
   m_Radius: 0.19969368
---- !u!114 &114088643714491176
+--- !u!114 &114670224752827638
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -65,11 +65,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1826914696467836}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 491354339d8dc8240975b6f74a1455cc, type: 3}
+  m_Script: {fileID: 11500000, guid: c04beb8d2f5bc39438a650fed4123921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
-  coinType: 2
+  coinType: 1
 --- !u!212 &212598453452788348
 SpriteRenderer:
   m_ObjectHideFlags: 1

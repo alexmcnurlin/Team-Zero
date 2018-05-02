@@ -4,6 +4,8 @@ using System.Xml;
 using UnityEditor;
 using UnityEngine;
 
+//  Link to Github: https://github.com/toxicFork/Unity3D-TextureAtlasSlicer
+
 public class TextureAtlasSlicer:EditorWindow {
     [MenuItem("CONTEXT/TextureImporter/Slice Sprite Using XML")]
     public static void SliceUsingXML(MenuCommand command)
