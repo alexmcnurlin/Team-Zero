@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
 interface IDeadPlayer
 {
 
@@ -27,8 +27,8 @@ abstract class PlayerAlive : IDeadPlayer
 
 	public abstract void KillPlayer ();
 }
-
-    public class Player : Character , IDeadPlayer 
+*/
+    public class Player : Character //, IDeadPlayer 
     {
         private Rigidbody2D rb2d;
         private DateTime sec;
@@ -56,6 +56,7 @@ abstract class PlayerAlive : IDeadPlayer
         public float flashSpeed = 2f;
         public Color flashColor = new Color(1f, 0f, 0f, 1f);
         private DateTime time;
+    Collision2D collision;  
 
 
         // Use this for initialization.
@@ -140,12 +141,11 @@ abstract class PlayerAlive : IDeadPlayer
                 isRecovering = false;
             }
 
+            if (!isInvincible && health <=0)
+            {
+                KillPlayer();
+            }
 
-            //gameObject.GetComponent<SpriteRenderer>().enabled = true;
-
-            //damageImage.GetComponent<SpriteRenderer>().color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
-            //damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
-            // }
         }
     }
         public void ApplyPowerup(Powerup powerup)
@@ -198,11 +198,12 @@ abstract class PlayerAlive : IDeadPlayer
             {
                 Debug.Log("Applying damage");
                 UpdateHealth(health - damage);
+                aSource.PlayFx(AudioManagement.SoundType.DAMAGE);
             //Jorge
             //gameObject.SetActive(false);
             //damageImage.GetComponent<SpriteRenderer>().color = Color.red;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            Debug.Log("Color is being changed to flashColor");
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                Debug.Log("Color is being changed to flashColor");
                 //damageImage.color = flashColor;
                 isRecovering = true;
                 sec = DateTime.Now.AddSeconds(flickerLength);
@@ -216,13 +217,15 @@ abstract class PlayerAlive : IDeadPlayer
         throw new NotImplementedException();
     }
 
-    public void KillPlayer()
+     void KillPlayer()
     {
-        if(!isInvincible && health == 0)
-        {
-            // Remove player.
-            Debug.Log("Player is dead!");
-        }
+        Debug.Log("Player is dead!");
+       // if(collision.gameObject.tag == "MainPlayer")
+        //{
+            GameObject playerGameObject = GameObject.Find("SadPancakeBody");
+            Destroy(playerGameObject);
+        //}
+        
     }
 
         public TimeSpan TimeLeft()
