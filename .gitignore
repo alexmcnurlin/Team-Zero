@@ -33,4 +33,7 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# This should end the stupid conflict with the database
+*.db
+
 .DS_Store
