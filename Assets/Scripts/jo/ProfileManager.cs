@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ProfileManager : MonoBehaviour {
 
-    public string profileName = "Test";
     public int currentScore = 0;
     public int levelID;
     private ScoreManager sc = new ScoreManager();
