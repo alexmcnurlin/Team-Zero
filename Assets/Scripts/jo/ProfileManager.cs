@@ -12,7 +12,8 @@ public class ProfileManager : MonoBehaviour {
 
     public void Start()
     {
-        LoadProfileData(profileName);
+		LoadActiveProfile ();	// loads active profile using string saved in playerprefs with "profile" key
+//        LoadProfileData(profileName);
         SaveProfileData();
     }
 
@@ -35,12 +36,17 @@ public class ProfileManager : MonoBehaviour {
         SaveProfileData();
     }
 
+	public void LoadActiveProfile()
+	{
+		LoadProfileData(PlayerPrefs.GetString("profile"));	// modified by Alex Parenti, grabs active profile name saved by AP_ActiveProfile	
+	}
+
     public void LoadProfileData(string profileName)
     {
         p = sc.GetProfile(profileName);
-        Debug.Log("Loading Profile " + p.username.ToString() + " Saved");
+		Debug.Log("Loading Profile " + p.username.ToString() + " Saved");
     }
-
+		
     public void SaveProfileData()
     {
         Debug.Log("Saving Profile " + p.username.ToString() + " Saved");
