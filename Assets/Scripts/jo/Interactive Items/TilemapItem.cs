@@ -7,13 +7,12 @@ public class TilemapItem : InteractiveItem {
     public TileMapTypes tileMapType;
 
     public enum TileMapTypes {
-        None,
-        DefaultSpeed,
-        Slowing,
-        Accelerating,
-        Damaging,
-        Killing,
-        EndOfLevel
+        None,                   //  None Applied    -   set speed to default
+        DefaultSpeed,           //  Default Speed   -   set speed to default
+        Slowing,                //  Slow Down Character as he Walks -   set speed to some <100 percentage of default speed
+        Accelerating,           //  Speed up character when on this type of floor   -   set speed to some >100 percentage of default speed
+        Damaging,               //  Damage Character    -   Do some amount of damage
+        Killing                 //  Damage Character    -   Deal 100% of health as damage
     }
 
     public override void Start()
@@ -24,45 +23,37 @@ public class TilemapItem : InteractiveItem {
 
     public override void OnCollisionEnter2D(Collision2D other)
     {
-
-        object[] tempStorage = new object[4];
+           
 
         if(tileMapType != TileMapTypes.None && (other.gameObject.tag == "MainPlayer" ||
             other.gameObject.tag == "Enemy" ||
             other.gameObject.tag == "NPC")) {
+            //  Affects Object with Tags "MainPlayer", "Enemy", "NPC"
+            //  This makes that Object run method: "CollideWithObject" - Like Delegate
+            //  Argument is the TileMapType - Look at Player.cs for example on how to use
+            //  gameObject is a component of whichever object collided with this floor
+            //  So gameObject acts as a delegate
 
-            switch(tileMapType) {
+            switch(tileMapType) {   //  look at the enum above to see what each argument should cause to happen
+                                    //  Implementation left to whoever makes objects with "MainPlayer", "Enemy", "NPC" tags
                 case TileMapTypes.DefaultSpeed:
-                    tempStorage[0] = "NormalSpeed";
-                    tempStorage[1] = 1f;
-                    other.gameObject.SendMessage("CollideWithObject", tempStorage);
+                    other.gameObject.SendMessage("CollideWithObject", TileMapTypes.DefaultSpeed);
                     break;
 
                 case TileMapTypes.Slowing:
-                    tempStorage[1] = 0.6f;
-                    other.gameObject.SendMessage("CollideWithObject", tempStorage);
+                    other.gameObject.SendMessage("CollideWithObject", TileMapTypes.Slowing);
                     break;
 
                 case TileMapTypes.Accelerating:
-                    tempStorage[0] = "Accelerating";
-                    tempStorage[1] = 1.5f;
-                    other.gameObject.SendMessage("CollideWithObject", tempStorage);
+                    other.gameObject.SendMessage("CollideWithObject", TileMapTypes.Accelerating);
                     break;
 
                 case TileMapTypes.Damaging:
-                    tempStorage[0] = "Damaging";
-                    tempStorage[1] = 1f; //should be a variable up there
-                    other.gameObject.SendMessage("CollideWithObject", tempStorage);
+                    other.gameObject.SendMessage("CollideWithObject", TileMapTypes.Damaging);
                     break;
 
                 case TileMapTypes.Killing:
-                    other.gameObject.SendMessage("CollideWithObject", "Killing");
-
-                    break;
-
-                case TileMapTypes.EndOfLevel:
-                    Debug.Log("End of Level");
-                    profileManager.LevelComplete();
+                    other.gameObject.SendMessage("CollideWithObject", TileMapTypes.Killing);
                     break;
 
                 default:

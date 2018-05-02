@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+	// used to determine which quest/chat to relate to this non-player character
 	[SerializeField] Dialog.Role npcRole;
+	// the dialog associated with the NPC
 	Dialog d;
-	float velocity;
-	float speed;
 
 	void Start ()
 	{
@@ -36,8 +36,8 @@ public class NPC : MonoBehaviour
 
 	public void CollideWithObject (object[] temp)
 	{
-		string type = (string)temp [0];
-		float speed = (float)temp [1];
-		velocity *= speed * 2;
+//		string type = (string)temp [0];
+//		float speed = (float)temp [1];
+//		velocity *= speed * 2;
 	}
 }
