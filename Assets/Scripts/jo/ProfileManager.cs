@@ -12,7 +12,7 @@ public class ProfileManager : MonoBehaviour {
 
     public void Start()
     {
-        LoadProfileData(profileName);
+        LoadActiveProfile ();  // loads active profile using string saved in playerprefs with "profile" key
         SaveProfileData();
     }
 
@@ -33,6 +33,11 @@ public class ProfileManager : MonoBehaviour {
     {
         sc.MarkLevelCompleted(p, levelID, currentScore);
         SaveProfileData();
+    }
+
+    public void LoadActiveProfile()
+    {
+        LoadProfileData(PlayerPrefs.GetString("profile"));  // modified by Alex Parenti, grabs active profile name saved by AP_ActiveProfile
     }
 
     public void LoadProfileData(string profileName)
