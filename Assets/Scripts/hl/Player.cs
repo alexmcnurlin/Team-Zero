@@ -4,6 +4,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 /*
@@ -220,12 +221,12 @@ abstract class PlayerAlive : IDeadPlayer
      void KillPlayer()
     {
         Debug.Log("Player is dead!");
-       // if(collision.gameObject.tag == "MainPlayer")
+        // if(collision.gameObject.tag == "MainPlayer")
         //{
-            GameObject playerGameObject = GameObject.Find("SadPancakeBody");
-            Destroy(playerGameObject);
+        //  GameObject playerGameObject = GameObject.Find("SadPancakeBody");
+        //Destroy(playerGameObject);
         //}
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);   
     }
 
         public TimeSpan TimeLeft()
