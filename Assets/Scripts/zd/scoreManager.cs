@@ -166,9 +166,12 @@ public class ScoreManager : SuperClass
 		List < int > lst = new List < int >();
 		foreach (string i in str.Split(',')) 
 		{
-			int j;
-			int.TryParse(i, out j);
-			lst.Add(j);
+			if (i != "")
+			{
+				int j;
+				int.TryParse (i, out j);
+				lst.Add (j);
+			}
 		}
 		return lst;
 	}
@@ -190,11 +193,14 @@ public class ScoreManager : SuperClass
 		Dictionary < int, int > dict = new Dictionary < int, int >();
 		foreach (string i in str.Split(',')) 
 		{
-			string[] d = i.Split(':');
-			int key, val;
-			int.TryParse(d[0], out key);
-			int.TryParse(d[1], out val);
-			dict.Add(key, val);
+			if(i != "")
+			{
+				string[] d = i.Split(':');
+				int key, val;
+				int.TryParse(d[0], out key);
+				int.TryParse(d[1], out val);
+				dict.Add(key, val);
+			}
 		}
 		return dict;
 	}
