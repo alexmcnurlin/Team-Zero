@@ -16,7 +16,8 @@ public class AudioManagement : MonoBehaviour
         TOKEN,
         STOP,
         INVINCIBILITY,
-        MENU
+        MENU,
+        DEATH
     }
     public static AudioManagement instance = null; 
 
@@ -41,6 +42,7 @@ public class AudioManagement : MonoBehaviour
     public AudioClip coinClip;
     public AudioClip tokenClip;
     public AudioClip invincibility;
+    public AudioClip deathClip;
 
     public int bgMusicCounter = 0;
 
@@ -63,6 +65,7 @@ public class AudioManagement : MonoBehaviour
         npcClip = (AudioClip)Resources.Load<AudioClip>("Sound/NPC");
         coinClip = (AudioClip)Resources.Load<AudioClip>("Sound/Coin");
         invincibility = (AudioClip)Resources.Load<AudioClip>("Sound/Invincibility");
+        deathClip = (AudioClip)Resources.Load<AudioClip>("Sound/Death");
 
         //Begin background music
         PlayMusic(SoundType.BG_MUSIC);
@@ -92,7 +95,7 @@ public class AudioManagement : MonoBehaviour
 
         //Used to test new sounds
         if (Input.GetKeyDown("u"))
-            PlayFx(SoundType.JUMP);
+            PlayFx(SoundType.DEATH);
 
         //Allow user to cycle through background music options
         if (Input.GetKeyDown("m"))
@@ -179,6 +182,9 @@ public class AudioManagement : MonoBehaviour
             case SoundType.STOP:
                 aSource.Stop();
                 bgSource.UnPause();
+                break;
+            case SoundType.DEATH:
+                aSource.PlayOneShot(deathClip);
                 break;
         }
     }
