@@ -36,6 +36,7 @@ public class ProfileManager : MonoBehaviour {
 
     public void LoadActiveProfile()
     {
+        Debug.Log("Current Profile Being Loaded: " + PlayerPrefs.GetString("profile"));
         LoadProfileData(PlayerPrefs.GetString("profile"));  // modified by Alex Parenti, grabs active profile name saved by AP_ActiveProfile
     }
 

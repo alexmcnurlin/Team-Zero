@@ -28,6 +28,15 @@ public class LevelSelectController : MonoBehaviour {
             case 1:
                 SceneManager.LoadScene("SimonsLevel", LoadSceneMode.Single);
                 break;
+            case 2:
+                SceneManager.LoadScene("AlexsLevel", LoadSceneMode.Single);
+                break;
+            case 3:
+                SceneManager.LoadScene("JorgesLevel", LoadSceneMode.Single);
+                break;
+            case 4:
+                SceneManager.LoadScene("ZanesLevel", LoadSceneMode.Single);
+                break;
         }
 
     }

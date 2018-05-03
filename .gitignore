@@ -37,3 +37,5 @@ sysinfo.txt
 *.db
 
 .DS_Store
+ProjectSettings/QualitySettings.asset
+ProjectSettings/QualitySettings.asset
