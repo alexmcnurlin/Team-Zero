@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/SimonsLevel.unity
     guid: da2417a81b168c246a61b659d1f55fb6
   - enabled: 1
-    path: Assets/Scenes/TestLevel.unity
-    guid: 7211de26c1a2e466cbd2f87d65989287
+    path: Assets/Scenes/AlexsLevel.unity
+    guid: 16387e88e28600e4e9b1ff3f6e3b9bcb
   - enabled: 1
     path: Assets/Scenes/JorgesLevel.unity
     guid: 41bdb826b9f338740b1c999a7e7017b9
+  - enabled: 1
+    path: Assets/Scenes/TestLevel.unity
+    guid: 7211de26c1a2e466cbd2f87d65989287
