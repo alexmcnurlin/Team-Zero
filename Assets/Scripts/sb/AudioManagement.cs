@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class AudioManagement : MonoBehaviour
 {
+
+    public static AudioManagement gameAudio;
+
     //Type used to allow easier calling of sounds
     public enum SoundType
     {

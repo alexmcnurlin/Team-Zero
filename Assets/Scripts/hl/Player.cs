@@ -63,6 +63,7 @@ abstract class PlayerAlive : IDeadPlayer
         // Use this for initialization.
         void Start()
         {
+            aSource = GameObject.Find("AudioManagement").GetComponent<AudioManagement>();
             rb2d = GetComponent<Rigidbody2D>();
             health = MAX_HEALTH;
         }
@@ -81,7 +82,7 @@ abstract class PlayerAlive : IDeadPlayer
             // Apply 7 units of force in the y direction.
             rb2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
             aSource.PlayFx(AudioManagement.SoundType.JUMP);
-        }
+    }
 
     // Update is called once per frame
     void Update()
